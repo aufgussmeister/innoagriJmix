@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://clienteEdit.caption"
+        >
+    <data>
+        <instance id="clienteDc"
+                  class="com.company.innoagri.entity.Cliente">
+            <fetchPlan extends="_base">
+                <property name="appezzamenti" fetchPlan="_base"/>
+                <property name="listini" fetchPlan="_local"/>
+                <property name="fatture" fetchPlan="_base"/>
+                <property name="attivita" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="appezzamentiDc" property="appezzamenti"/>
+            <collection id="listiniDc" property="listini"/>
+            <collection id="fattureDc" property="fatture"/>
+            <collection id="attivitaDc" property="attivita"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" margin="true" responsive="true" width="100%"  expand="scroll">
+        <scrollBox id="scroll" width="100%" spacing="true" scrollBars="vertical">
+            <vbox spacing="true" width="100%">
+                        <label id="clienteLbl" align="MIDDLE_CENTER" width="AUTO" height="AUTO"></label>
+                        <groupBox id="anagraficaGroup" width="100%" height="AUTO" spacing="true" collapsable="true" caption="Anagrafica Cliente" responsive="true" >
+                                <vbox margin="auto" spacing="true" responsive="true" width="100%">
+                                    <groupBox caption="Anagrafica" width="100%" responsive="true">
+
+                                            <form id="form1" dataContainer="clienteDc" width="100%" responsive="true">
+                                                <column width="60px">
+                                                    <textField id="idField" property="id" editable="false" responsive="true" caption=""/>
+                                                </column>
+                                                <column>
+                                                    <textField id="ragioneSocialeField" property="ragioneSociale" responsive="true"/>
+                                                </column>
+                                                <column>
+                                                    <textField id="nomeField" property="nome" responsive="true"/>
+                                                </column>
+                                                <column>
+                                                    <textField id="cognomeField" property="cognome" responsive="true"/>
+                                                </column>
+                                            </form>
+
+                                    </groupBox>
+                                    <groupBox caption="Dati Fiscali" width="100%" responsive="true">
+                                        <hbox width="100%" responsive="true">
+                                            <form id="form2" dataContainer="clienteDc" width="100%">
+                                                <column width="100%">
+                                                    <textField id="pivaField" property="piva" responsive="true" width="100%"/>
+                                                </column>
+                                                <column width="100%">
+                                                    <textField id="codiceFiscaleField" property="codiceFiscale" width="100%" responsive="true"/>
+                                                </column>
+                                            </form>
+                                        </hbox>
+                                    </groupBox>
+
+                                    <groupBox caption="Contatti" width="100%" responsive="true" spacing="true">
+                                        <vbox width="100%" responsive="true" spacing="true">
+                                            <hbox responsive="true" width="100%" spacing="true">
+                                                <form id="form3" dataContainer="clienteDc" width="100%">
+                                                    <column width="100%">
+                                                        <textField id="telefonoField" property="telefono" width="100%" responsive="true"/>
+                                                    </column>
+                                                    <column width="100%">
+                                                        <textField id="cellulareField" property="cellulare" width="100%" responsive="true"/>
+                                                    </column>
+                                                </form>
+                                            </hbox>
+                                            <hbox width="100%" responsive="true" spacing="true">
+                                                <form id="form4" dataContainer="clienteDc" width="100%">
+                                                    <column width="100%">
+                                                        <textField id="emailField" property="email"/>
+                                                    </column>
+                                                    <column width="100%">
+                                                        <textField id="pecField" property="pec"/>
+                                                    </column>
+                                                </form>
+                                            </hbox>
+                                        </vbox>
+                                    </groupBox>
+
+                                    <groupBox caption="Indirizzo" responsive="true" width="100%" spacing="true">
+                                        <vbox width="100%" responsive="true" spacing="true">
+                                            <hbox spacing="true" responsive="true" width="100%">
+                                                <form id="form5" dataContainer="clienteDc" width="100%">
+                                                    <column width="100%">
+                                                        <textField id="localitaField" property="localita" width="100%" responsive="true"/>                                        </column>
+                                                    <column width="100%">
+                                                        <textField id="indirizzoField" property="indirizzo" responsive="true" width="100%"/>
+                                                    </column>
+                                                </form>
+                                            </hbox>
+                                            <hbox responsive="true" width="100%" spacing="true">
+                                                <form id="form6" dataContainer="clienteDc" width="100%">
+                                                    <column width="50%">
+                                                        <textField id="comuneField" property="comune" width="100%" responsive="true"/>
+                                                    </column>
+                                                    <column width="25%">
+                                                        <textField id="capField" property="cap" width="100%" responsive="true"/>
+                                                    </column>
+                                                    <column width="25%">
+                                                        <textField id="provinciaField" property="provincia" width="100%" responsive="true"/>
+                                                    </column>
+                                                </form>
+                                            </hbox>
+                                        </vbox>
+                                    </groupBox>
+                                </vbox>
+
+                        </groupBox>
+
+
+
+
+                    <hbox id="editActions" spacing="true" height="AUTO" align="MIDDLE_CENTER">
+                        <button id="commitAndCloseBtn" action="windowCommitAndClose" caption="Salva"/>
+                        <button id="closeBtn" action="windowClose" caption="Esci"/>
+                    </hbox>
+                    <tabSheet id="tabSheet" height="AUTO" width="100%">
+                        <tab caption="Attività" id="tab_1" spacing="true" icon="font-icon:WRENCH" margin="true">
+                            <groupBox id="attivitaBox" caption="msg://com.company.innoagri.entity/Cliente.attivita" width="100%" height="100%">
+                                <table id="attivitaTable" dataContainer="attivitaDc" width="100%" height="200px">
+                                    <actions>
+                                        <action id="create" type="create"/>
+                                        <action id="edit" type="edit"/>
+                                        <action id="remove" type="remove"/>
+                                    </actions>
+                                    <columns>
+                                        <column id="oreCollaboratore"/>
+                                        <column id="note"/>
+                                        <column id="qta"/>
+                                        <column id="oraInizio"/>
+                                        <column id="oraFine"/>
+                                        <column id="durata"/>
+                                        <column id="valore"/>
+                                        <column id="unitaMisura"/>
+                                        <column id="data"/>
+                                        <column id="prezzo"/>
+                                        <column id="verificato"/>
+                                        <column id="daFatturare"/>
+                                        <column id="fatturato"/>
+                                    </columns>
+                                    <buttonsPanel>
+                                        <button action="attivitaTable.create"/>
+                                        <button action="attivitaTable.edit"/>
+                                        <button action="attivitaTable.remove"/>
+                                    </buttonsPanel>
+                                </table>
+                            </groupBox>
+                        </tab>
+
+                        <tab caption="Appezzamenti" id="tab_2" spacing="true" icon="font-icon:MAP" margin="true">
+                            <groupBox id="appezzamentiBox" caption="msg://com.company.innoagri.entity/Cliente.appezzamenti" >
+                                <table id="appezzamentiTable" dataContainer="appezzamentiDc" width="100%" height="100%" >
+                                    <actions>
+                                        <action id="create" type="create"/>
+                                        <action id="edit" type="edit"/>
+                                        <action id="remove" type="remove"/>
+                                    </actions>
+                                    <columns>
+                                        <column id="varieta"/>
+                                        <column id="superficie"/>
+                                        <column id="annoImpianto"/>
+                                        <column id="denominazione"/>
+                                        <column id="comune"/>
+                                        <column id="annoSovrainnesto"/>
+                                        <column id="distanzaAcqua"/>
+                                        <column id="distanzaTraPiante"/>
+                                        <column id="distanzaTraFilari"/>
+                                        <column id="irrigato"/>
+                                        <column id="tipoIrrigazione"/>
+                                        <column id="note"/>
+                                    </columns>
+                                    <buttonsPanel>
+                                        <button action="appezzamentiTable.create"/>
+                                        <button action="appezzamentiTable.edit"/>
+                                        <button action="appezzamentiTable.remove"/>
+                                    </buttonsPanel>
+                                </table>
+                            </groupBox>
+                        </tab>
+
+                        <tab caption="Listino" id="tab_3" spacing="true" icon="font-icon:LIST">
+                            <groupBox id="listiniBox" caption="msg://com.company.innoagri.entity/Cliente.listini">
+                                <table id="listiniTable" dataContainer="listiniDc" width="100%" height="100%">
+                                    <actions>
+                                        <action id="create" type="create"/>
+                                        <action id="edit" type="edit"/>
+                                        <action id="remove" type="remove"/>
+                                    </actions>
+                                    <columns>
+                                        <column id="lavorazione"/>
+                                        <column id="prezzoLavorazione" caption="Prezzo Listino"/>
+                                        <column id="sconto"/>
+                                        <column id="prezzoCliente" caption="Prezzo Cliente" />
+
+                                    </columns>
+                                    <buttonsPanel>
+                                        <button action="listiniTable.create"/>
+                                        <button action="listiniTable.edit"/>
+                                        <button action="listiniTable.remove"/>
+                                    </buttonsPanel>
+                                </table>
+                            </groupBox>
+                        </tab>
+
+                        <tab caption="Fatture" id="tab_4" spacing="true" icon="font-icon:EURO" margin="true">
+                            <groupBox id="fattureBox" caption="msg://com.company.innoagri.entity/Cliente.fatture">
+                                <table id="fattureTable" dataContainer="fattureDc" width="100%" height="100%">
+                                    <actions>
+                                        <action id="create" type="create"/>
+                                        <action id="edit" type="edit"/>
+                                        <action id="remove" type="remove"/>
+                                    </actions>
+                                    <columns>
+                                        <column id="numeroFattura"/>
+                                        <column id="data"/>
+                                        <column id="annoFattura"/>
+                                        <column id="totale"/>
+                                    </columns>
+                                    <buttonsPanel>
+                                        <button action="fattureTable.create"/>
+                                        <button action="fattureTable.edit"/>
+                                        <button action="fattureTable.remove"/>
+                                    </buttonsPanel>
+                                </table>
+                            </groupBox>
+                        </tab>
+                    </tabSheet>
+            </vbox>
+        </scrollBox>
+    </layout>
+</window>

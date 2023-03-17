@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://appezzamentoBrowse.caption"
+        focusComponent="appezzamentoesTable">
+    <data readOnly="true">
+        <collection id="appezzamentoesDc"
+                    class="com.company.innoagri.entity.Appezzamento">
+            <fetchPlan extends="_base">
+                <property name="varieta" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="appezzamentoesDl">
+                <query>
+                    <![CDATA[select e from Appezzamento e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="appezzamentoesTable" spacing="true">
+        <filter id="filter"
+                dataLoader="appezzamentoesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="appezzamentoesTable"
+                    width="100%"
+                    dataContainer="appezzamentoesDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="denominazione"/>
+                <column id="comune"/>
+                <column id="annoImpianto"/>
+                <column id="annoSovrainnesto"/>
+                <column id="superficie"/>
+                <column id="distanzaAcqua"/>
+                <column id="distanzaTraPiante"/>
+                <column id="distanzaTraFilari"/>
+                <column id="irrigato"/>
+                <column id="tipoIrrigazione"/>
+                <column id="note"/>
+                <column id="varieta"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="appezzamentoesTable.create"/>
+                <button id="editBtn" action="appezzamentoesTable.edit"/>
+                <button id="removeBtn" action="appezzamentoesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

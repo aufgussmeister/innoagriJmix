@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="innoagri">
+        <createTable tableName="FITOSANITARIO_NAZIONALE">
+            <column autoIncrement="true" name="ID" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_FITOSANITARIO_NAZIONALE"/>
+            </column>
+            <column name="NUMERO_REGISTRAZIONE" type="BIGINT"/>
+            <column name="PRODOTTO" type="VARCHAR(255)"/>
+            <column name="IMPRESA" type="VARCHAR(255)"/>
+            <column name="DATA_REGISTRAZIONE" type="DATE"/>
+            <column name="SCADENZA_AUTORIZZAZIONE" type="DATE"/>
+            <column name="INDICAZIONI_DI_PERICOLO" type="VARCHAR(255)"/>
+            <column name="ATTIVITA" type="VARCHAR(255)"/>
+            <column name="CODICE_FORMULAZIONE" type="VARCHAR(255)"/>
+            <column name="DESCRIZIONE_FORMULAZIONE" type="VARCHAR(255)"/>
+            <column name="SOSTANZE_ATTIVE" type="VARCHAR(255)"/>
+            <column name="CONTENUTO_PER_CENTO_GRAMMI_DI_PRODOTTO" type="VARCHAR(255)"/>
+            <column name="STATO_AMMINISTRATIVO" type="VARCHAR(255)"/>
+            <column name="MOTIVO_REVOCA" type="VARCHAR(255)"/>
+            <column name="DATA_DECORRENZA_REVOCA" type="DATE"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="innoagri">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="UNITA_DI_MISURA"
+                               tableName="PREZZO_LAVORAZIONE"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://clienteBrowse.caption"
+        focusComponent="clientesTable">
+    <data readOnly="true">
+        <collection id="clientesDc"
+                    class="com.company.innoagri.entity.Cliente">
+            <fetchPlan extends="_base"/>
+            <loader id="clientesDl">
+                <query>
+                    <![CDATA[select e from Cliente e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+        <presentations auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="clientesTable" spacing="true">
+        <filter id="filter"
+                dataLoader="clientesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="clientesTable"
+                    width="100%"
+                    dataContainer="clientesDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="export" type="excelExport"/>
+            </actions>
+            <columns>
+                <column id="id"/>
+                <column id="ragioneSociale"/>
+                <column id="nome"/>
+                <column id="cognome"/>
+                <column id="piva"/>
+                <column id="codiceFiscale"/>
+                <column id="cellulare"/>
+                <column id="comune"/>
+                <column id="email"/>
+                <column id="societa"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="clientesTable.create"/>
+                <button id="editBtn" action="clientesTable.edit"/>
+                <button id="exportBtn" action="clientesTable.export"/>
+                <button id="removeBtn" action="clientesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

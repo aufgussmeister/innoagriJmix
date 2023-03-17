@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://fitosanitarioBrowse.caption"
+        focusComponent="fitosanitariosTable">
+    <data readOnly="true">
+        <collection id="fitosanitariosDc"
+                    class="com.company.innoagri.entity.Fitosanitario">
+            <fetchPlan extends="_base">
+                <property name="fitosanitarioNazionale" fetchPlan="_base"/>
+                <property name="avversita" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="fitosanitariosDl">
+                <query>
+                    <![CDATA[select e from Fitosanitario e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="fitosanitariosTable" spacing="true">
+        <filter id="filter"
+                dataLoader="fitosanitariosDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="fitosanitariosTable"
+                    width="100%"
+                    dataContainer="fitosanitariosDc"
+                    multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="fitosanitarioNazionale"/>
+                <column id="prodotto"/>
+                <column id="impresa"/>
+                <column id="attivita"/>
+                <column id="doseMinima"/>
+                <column id="doseMassima"/>
+                <column id="unitaMisua"/>
+                <column id="note"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="fitosanitariosTable.create"/>
+                <button id="editBtn" action="fitosanitariosTable.edit"/>
+                <button id="removeBtn" action="fitosanitariosTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

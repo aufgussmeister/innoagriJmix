@@ -1,0 +1,19 @@
+@import "Innovit-defaults";
+@import "addons";
+@import "Innovit";
+
+.Innovit {
+  @include addons;
+  @include Innovit;
+}
+
+.jmix-responsivegridlayout {
+  &.demo {
+    .row > .col, .row > [class^=col-] {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      background-color: #D2CCEC;
+      border: 1px solid #F2F2F2;
+    }
+  }
+}

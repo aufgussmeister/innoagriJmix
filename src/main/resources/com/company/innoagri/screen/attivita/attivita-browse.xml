@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://attivitaBrowse.caption"
+        focusComponent="attivitasTable">
+    <data readOnly="true">
+        <collection id="attivitasDc"
+                    class="com.company.innoagri.entity.Attivita">
+            <fetchPlan extends="_base">
+                <property name="collaboratore" fetchPlan="_base"/>
+                <property name="lavorazione" fetchPlan="_base"/>
+                <property name="appezzamenti" fetchPlan="_base">
+                    <property name="varieta" fetchPlan="_base"/>
+                </property>
+                <property name="mezzo" fetchPlan="_base"/>
+                <property name="fattura" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="attivitasDl">
+                <query>
+                    <![CDATA[select e from Attivita e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="attivitasTable" spacing="true">
+        <filter id="filter"
+                dataLoader="attivitasDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="attivitasTable"
+                    width="100%"
+                    dataContainer="attivitasDc" multiselect="true">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="oreCollaboratore"/>
+                <column id="note"/>
+                <column id="collaboratore"/>
+                <column id="qta"/>
+                <column id="oraInizio"/>
+                <column id="oraFine"/>
+                <column id="durata"/>
+                <column id="valore"/>
+                <column id="unitaMisura"/>
+                <column id="lavorazione"/>
+                <column id="data"/>
+                <column id="prezzo"/>
+                <column id="verificato"/>
+                <column id="daFatturare"/>
+                <column id="fatturato"/>
+                <column id="mezzo"/>
+                <column id="fattura"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="attivitasTable.create"/>
+                <button id="editBtn" action="attivitasTable.edit"/>
+                <button id="removeBtn" action="attivitasTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

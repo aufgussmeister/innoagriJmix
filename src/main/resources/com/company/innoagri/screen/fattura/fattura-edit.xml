@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://fatturaEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="fatturaDc"
+                  class="com.company.innoagri.entity.Fattura">
+            <fetchPlan extends="_base">
+                <property name="cliente" fetchPlan="_base">
+                    <property name="listini" fetchPlan="_base"/>
+                    <property name="appezzamenti" fetchPlan="_base"/>
+                </property>
+                <property name="attivita" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="fatturaDc">
+            <column width="350px">
+                <textField id="idField" property="id"/>
+                <entityPicker id="clienteField" property="cliente">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="attivitaField" property="attivita">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <dateField id="dataField" property="data"/>
+                <textField id="annoFatturaField" property="annoFattura"/>
+                <textField id="totaleField" property="totale"/>
+                <textField id="numeroFatturaField" property="numeroFattura"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

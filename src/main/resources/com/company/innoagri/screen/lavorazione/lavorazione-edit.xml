@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://lavorazioneEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="lavorazioneDc"
+                  class="com.company.innoagri.entity.Lavorazione">
+            <fetchPlan extends="_base">
+                <property name="prezzi" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="prezziDc" property="prezzi"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="lavorazioneDc">
+            <column width="350px">
+                <textField id="nomeField" property="nome"/>
+                <checkBox id="attivoField" property="attivo"/>
+                <textArea id="noteField" property="note" rows="5"/>
+                <textField id="tenantField" property="tenant"/>
+            </column>
+        </form>
+        <groupBox id="prezziBox" caption="msg://com.company.innoagri.entity/Lavorazione.prezzi">
+            <table id="prezziTable" dataContainer="prezziDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="dataInizio"/>
+                    <column id="inVigore"/>
+                    <column id="dataFine"/>
+                    <column id="unitaDiMisura"/>
+                    <column id="prezzo"/>
+                    <column id="prezzoOra"/>
+                    <column id="tenant"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="prezziTable.create"/>
+                    <button action="prezziTable.edit"/>
+                    <button action="prezziTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

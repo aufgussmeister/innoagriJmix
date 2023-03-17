@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://fitosanitarioNazionaleEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="fitosanitarioNazionaleDc"
+                  class="com.company.innoagri.entity.FitosanitarioNazionale">
+            <fetchPlan extends="_base"/>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose"
+                caption="msg:///actions.SaveClose"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowCommit"
+                caption="msg:///actions.Save"
+                icon="SAVE"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="fitosanitarioNazionaleDc" editable="false">
+                <column width="350px">
+                    <textField id="idField" property="id" editable="false"/>
+                    <textField id="prodottoField" property="prodotto"/>
+                    <textField id="impresaField" property="impresa"/>
+                    <dateField id="dataRegistrazioneField" property="dataRegistrazione"/>
+                    <dateField id="scadenzaAutorizzazioneField" property="scadenzaAutorizzazione"/>
+                    <textField id="indicazioniDiPericoloField" property="indicazioniDiPericolo"/>
+                    <textField id="attivitaField" property="attivita"/>
+                    <textField id="codiceFormulazioneField" property="codiceFormulazione"/>
+                    <textField id="descrizioneFormulazioneField" property="descrizioneFormulazione"/>
+                    <textField id="sostanzeAttiveField" property="sostanzeAttive"/>
+                    <textField id="contenutoPerCentoGrammiDiProdottoField"
+                               property="contenutoPerCentoGrammiDiProdotto"/>
+                    <textField id="statoAmministrativoField" property="statoAmministrativo"/>
+                    <textField id="motivoRevocaField" property="motivoRevoca"/>
+                    <dateField id="dataDecorrenzaRevocaField" property="dataDecorrenzaRevoca"/>
+                </column>
+            </form>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="commitBtn" action="windowCommit"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
