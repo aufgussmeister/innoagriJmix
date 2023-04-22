@@ -1,0 +1,8 @@
+<fetchPlans xmlns="http://jmix.io/schema/core/fetch-plans">
+    <fetchPlan entity="User" name="user-full" extends="_local">
+        <property name="toDoes" fetchPlan="_base">
+            <property name="assegnatoA" fetchPlan="_base"/>
+            <property name="creatoDa" fetchPlan="_base"/>
+        </property>
+    </fetchPlan>
+</fetchPlans>

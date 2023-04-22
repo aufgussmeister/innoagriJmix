@@ -72,10 +72,12 @@ public class User implements JmixUserDetails, HasTimeZone, AcceptsTenant {
     private String tenant;
 
     @JoinTable(name = "TO_DO_USER_LINK",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "TO_DO_ID"))
+            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "TO_DO_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<ToDo> toDoes;
+
+
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
 
@@ -223,5 +225,7 @@ public class User implements JmixUserDetails, HasTimeZone, AcceptsTenant {
     public void setTenant(String tenant) {
         this.tenant = tenant;
     }
+
+
 
 }
