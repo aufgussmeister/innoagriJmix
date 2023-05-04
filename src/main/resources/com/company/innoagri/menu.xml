@@ -22,6 +22,8 @@
         <item screen="Avversita.browse" caption="msg://com.company.innoagri.screen.avversita/avversitaBrowse.menu" icon="font-icon:BUG"/>
         <item screen="Fitosanitario.browse"
               caption="msg://com.company.innoagri.screen.fitosanitario/fitosanitarioBrowse.menu" icon="font-icon:EXCLAMATION_TRIANGLE"/>
+        <item screen="ToDo.browse" caption="msg://com.company.innoagri.screen.todo/toDoBrowse.menu" icon="font-icon:CHECK_SQUARE_O"/>
+        <item screen="JpqlTest" caption="msg://com.company.innoagri.screen.jpqltest/jpqlTest.caption"/>
     </menu>
 
 </menu-config>

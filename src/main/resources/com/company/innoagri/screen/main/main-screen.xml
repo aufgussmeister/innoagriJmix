@@ -12,7 +12,7 @@
                            stylename="app-icon"
                            scaleMode="SCALE_DOWN">
                         <resource>
-                            <theme path="branding/app-icon-menu.svg"/>
+                            <theme path="branding/logo.png"/>
                         </resource>
                     </image>
                     <label id="appTitleLabel"

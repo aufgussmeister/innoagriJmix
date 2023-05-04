@@ -3,6 +3,8 @@ package com.company.innoagri.entity;
 import io.jmix.core.annotation.TenantId;
 import io.jmix.core.entity.annotation.CaseConversion;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.Column;
@@ -84,4 +86,9 @@ public class Mezzo {
         this.modello = modello;
     }
 
+    @InstanceName
+    @DependsOnProperties({"costruttore", "targa"})
+    public String getInstanceName() {
+        return String.format("%s %s - %s", costruttore,cavalli.toString(), targa);
+    }
 }

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://appezzamentoBrowse.caption"
-        focusComponent="appezzamentoesTable">
+        caption="msg://toDoBrowse.caption"
+        focusComponent="toDoesTable">
     <data readOnly="true">
-        <collection id="appezzamentoesDc"
-                    class="com.company.innoagri.entity.Appezzamento">
+        <collection id="toDoesDc"
+                    class="com.company.innoagri.entity.ToDo">
             <fetchPlan extends="_base">
-                <property name="varieta" fetchPlan="_base"/>
+                <property name="creatoDa" fetchPlan="_base"/>
+                <property name="assegnatoA" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="appezzamentoesDl">
+            <loader id="toDoesDl">
                 <query>
-                    <![CDATA[select e from Appezzamento e]]>
+                    <![CDATA[select e from ToDo e]]>
                 </query>
             </loader>
         </collection>
@@ -32,41 +33,33 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="appezzamentoesTable" spacing="true">
+    <layout expand="toDoesTable" spacing="true">
         <filter id="filter"
-                dataLoader="appezzamentoesDl">
+                dataLoader="toDoesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="appezzamentoesTable"
+        <groupTable id="toDoesTable"
                     width="100%"
-                    dataContainer="appezzamentoesDc"
-                    multiselect="true">
+                    dataContainer="toDoesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="cliente"/>
-                <column id="denominazione"/>
-                <column id="comune"/>
-                <column id="annoImpianto"/>
-                <column id="annoSovrainnesto"/>
-                <column id="superficie"/>
-                <column id="distanzaAcqua"/>
-                <column id="distanzaTraPiante"/>
-                <column id="distanzaTraFilari"/>
-                <column id="irrigato"/>
-                <column id="tipoIrrigazione"/>
-                <column id="note"/>
-                <column id="varieta"/>
+                <column id="descrizione"/>
+                <column id="creatoDa"/>
+                <column id="scadenza"/>
+                <column id="fatto"/>
+                <column id="presoInCarico"/>
+                <column id="tenant"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="appezzamentoesTable.create"/>
-                <button id="editBtn" action="appezzamentoesTable.edit"/>
-                <button id="removeBtn" action="appezzamentoesTable.remove"/>
+                <button id="createBtn" action="toDoesTable.create"/>
+                <button id="editBtn" action="toDoesTable.edit"/>
+                <button id="removeBtn" action="toDoesTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

@@ -37,17 +37,18 @@
         <scrollBox id="scroll" width="100%" spacing="true" scrollBars="vertical">
             <vbox spacing="true" width="100%">
                         <label id="clienteLbl" align="MIDDLE_CENTER" width="AUTO" height="AUTO"></label>
-                        <groupBox id="anagraficaGroup" width="100%" height="AUTO" spacing="true" collapsable="true" caption="Anagrafica Cliente" responsive="true" >
+                        <groupBox id="anagraficaGroup" width="100%" height="AUTO" spacing="true" collapsable="true" caption="Anagrafica Cliente" responsive="true" collapsed="true">
                                 <vbox margin="auto" spacing="true" responsive="true" width="100%">
                                     <groupBox caption="Anagrafica" width="100%" responsive="true">
 
                                             <form id="form1" dataContainer="clienteDc" width="100%" responsive="true">
                                                 <column width="60px">
-                                                    <textField id="idField" property="id" editable="false" responsive="true" caption=""/>
+                                                    <textField id="idField" property="id" editable="false" responsive="true" caption="" />
                                                 </column>
                                                 <column>
-                                                    <textField id="ragioneSocialeField" property="ragioneSociale" responsive="true"/>
+                                                    <textField id="ragioneSocialeField" property="ragioneSociale" caption="RSoc." responsive="true"/>
                                                 </column>
+
                                                 <column>
                                                     <textField id="nomeField" property="nome" responsive="true"/>
                                                 </column>
@@ -61,10 +62,10 @@
                                         <hbox width="100%" responsive="true">
                                             <form id="form2" dataContainer="clienteDc" width="100%">
                                                 <column width="100%">
-                                                    <textField id="pivaField" property="piva" responsive="true" width="100%"/>
+                                                    <textField id="pivaField" property="piva" caption="P.I." responsive="true" width="100%"/>
                                                 </column>
                                                 <column width="100%">
-                                                    <textField id="codiceFiscaleField" property="codiceFiscale" width="100%" responsive="true"/>
+                                                    <textField id="codiceFiscaleField" property="codiceFiscale" caption="C.F." width="100%" responsive="true"/>
                                                 </column>
                                             </form>
                                         </hbox>
@@ -75,17 +76,17 @@
                                             <hbox responsive="true" width="100%" spacing="true">
                                                 <form id="form3" dataContainer="clienteDc" width="100%">
                                                     <column width="100%">
-                                                        <textField id="telefonoField" property="telefono" width="100%" responsive="true"/>
+                                                        <textField id="telefonoField" property="telefono" caption="Tel." width="100%" responsive="true"/>
                                                     </column>
                                                     <column width="100%">
-                                                        <textField id="cellulareField" property="cellulare" width="100%" responsive="true"/>
+                                                        <textField id="cellulareField" property="cellulare" caption="Cel." width="100%" responsive="true"/>
                                                     </column>
                                                 </form>
                                             </hbox>
                                             <hbox width="100%" responsive="true" spacing="true">
                                                 <form id="form4" dataContainer="clienteDc" width="100%">
                                                     <column width="100%">
-                                                        <textField id="emailField" property="email"/>
+                                                        <textField id="emailField" caption="Mail" property="email"/>
                                                     </column>
                                                     <column width="100%">
                                                         <textField id="pecField" property="pec"/>
@@ -112,7 +113,7 @@
                                                         <textField id="comuneField" property="comune" width="100%" responsive="true"/>
                                                     </column>
                                                     <column width="25%">
-                                                        <textField id="capField" property="cap" width="100%" responsive="true"/>
+                                                        <textField id="capField" property="cap"  width="100%" responsive="true"/>
                                                     </column>
                                                     <column width="25%">
                                                         <textField id="provinciaField" property="provincia" width="100%" responsive="true"/>
@@ -135,23 +136,26 @@
                     <tabSheet id="tabSheet" height="AUTO" width="100%">
                         <tab caption="Attività" id="tab_1" spacing="true" icon="font-icon:WRENCH" margin="true">
                             <groupBox id="attivitaBox" caption="msg://com.company.innoagri.entity/Cliente.attivita" width="100%" height="100%">
-                                <table id="attivitaTable" dataContainer="attivitaDc" width="100%" height="200px">
+                                <table id="attivitaTable" dataContainer="attivitaDc" width="100%" height="550px">
                                     <actions>
                                         <action id="create" type="create"/>
                                         <action id="edit" type="edit"/>
                                         <action id="remove" type="remove"/>
                                     </actions>
                                     <columns>
+                                        <column id="data"/>
+                                        <column id="lavorazione" />
+                                        <column id="collaboratore"/>
                                         <column id="oreCollaboratore"/>
-                                        <column id="note"/>
+                                        <column id="durata"/>
                                         <column id="qta"/>
+                                        <column id="prezzo"/>
                                         <column id="oraInizio"/>
                                         <column id="oraFine"/>
-                                        <column id="durata"/>
-                                        <column id="valore"/>
+                                        <column id="note"/>
+
                                         <column id="unitaMisura"/>
-                                        <column id="data"/>
-                                        <column id="prezzo"/>
+
                                         <column id="verificato"/>
                                         <column id="daFatturare"/>
                                         <column id="fatturato"/>

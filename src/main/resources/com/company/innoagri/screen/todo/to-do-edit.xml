@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://toDoEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="toDoDc"
+                  class="com.company.innoagri.entity.ToDo">
+            <fetchPlan extends="_base">
+                <property name="creatoDa" fetchPlan="_base"/>
+                <property name="assegnatoA" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="assegnatoADc" property="assegnatoA"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="toDoDc">
+                <column width="350px">
+                    <textField id="descrizioneField" property="descrizione"/>
+                    <entityPicker id="creatoDaField" property="creatoDa">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                    <dateField id="scadenzaField" property="scadenza"/>
+                    <checkBox id="fattoField" property="fatto"/>
+                    <checkBox id="presoInCaricoField" property="presoInCarico"/>
+                    <textField id="tenantField" property="tenant" visible="false" />
+                </column>
+            </form>
+            <groupBox id="assegnatoABox" caption="msg://com.company.innoagri.entity/ToDo.assegnatoA">
+                <table id="assegnatoATable" dataContainer="assegnatoADc" width="100%" height="100%">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="firstName"/>
+                        <column id="lastName"/>
+                        <column id="mansione"/>
+                        <column id="esterno"/>
+                        <column id="timeZoneId"/>
+                        <column id="tenant" visible="false"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="assegnatoATable.add"/>
+                        <button action="assegnatoATable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

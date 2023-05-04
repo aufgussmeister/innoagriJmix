@@ -7,11 +7,10 @@
         <collection id="attivitasDc"
                     class="com.company.innoagri.entity.Attivita">
             <fetchPlan extends="_base">
+                <property name="cliente" fetchPlan="_base"/>
                 <property name="collaboratore" fetchPlan="_base"/>
                 <property name="lavorazione" fetchPlan="_base"/>
-                <property name="appezzamenti" fetchPlan="_base">
-                    <property name="varieta" fetchPlan="_base"/>
-                </property>
+                <property name="appezzamenti" fetchPlan="_base"/>
                 <property name="mezzo" fetchPlan="_base"/>
                 <property name="fattura" fetchPlan="_base"/>
             </fetchPlan>
@@ -36,10 +35,8 @@
                 caption="msg:///actions.Cancel"
                 icon="LOOKUP_CANCEL"/>
     </actions>
-    <dialogMode height="AUTO"
-                width="AUTO"
-                modal="true"
-                forceDialog="true"/>
+    <dialogMode height="600"
+                width="800"/>
     <layout expand="attivitasTable" spacing="true">
         <filter id="filter"
                 dataLoader="attivitasDl">
@@ -47,13 +44,15 @@
         </filter>
         <groupTable id="attivitasTable"
                     width="100%"
-                    dataContainer="attivitasDc" multiselect="true">
+                    dataContainer="attivitasDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
+                <column id="cliente"/>
+                <column id="tenant"/>
                 <column id="oreCollaboratore"/>
                 <column id="note"/>
                 <column id="collaboratore"/>
@@ -76,7 +75,7 @@
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn" action="attivitasTable.create"/>
-                <button id="editBtn" action="attivitasTable.edit"/>
+                <button id="editBtn" action="attivitasTable.edit" />
                 <button id="removeBtn" action="attivitasTable.remove"/>
             </buttonsPanel>
         </groupTable>

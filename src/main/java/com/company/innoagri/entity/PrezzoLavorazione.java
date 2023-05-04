@@ -85,8 +85,8 @@ public class PrezzoLavorazione {
         return prezzoOra;
     }
 
-    public void setPrezzoOra(Double prezzo) {
-        this.prezzo = prezzoOra;
+    public void setPrezzoOra(Double prezzoOra) {
+        this.prezzoOra = prezzoOra;
     }
 
     public Double getPrezzo() {

@@ -2,4 +2,30 @@
 
 @mixin Innovit {
   @include helium;
+
+  /* Basic */
+  --border-color: #6EB8A3;
+  --error-color: #F3969A;
+  --primary-color: #78C2AD;
+  --primary-color_rgb: 120, 194, 173;
+  --secondary-color: #6CC3D5;
+  --secondary-color_rgb: 108, 195, 213;
+  --success-color: #56CC9D;
+  --warning-color: #FFCE67;
+
+  /* Common */
+  --error-color-shade-1: #EE7278;
+  --error-color-shade-2: #EA4D55;
+  --error-dim-color: #F6B1B5;
+  --primary-color-shade-1: #5EB59B;
+  --primary-color-shade-2: #4DA88D;
+  --primary-dim-color: #9DD2C2;
+  --secondary-color-shade-1: #4DB6CB;
+  --secondary-color-shade-2: #38ABC2;
+  --secondary-dim-color: #94D3E0;
+  --success-color-shade-1: #3CC38D;
+  --success-color-shade-2: #35AC7C;
+  --success-dim-color: #86DAB8;
+  --warning-contrast-text-color: #FFFFFF;
+
 }

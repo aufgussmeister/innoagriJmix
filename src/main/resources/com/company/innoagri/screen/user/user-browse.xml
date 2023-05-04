@@ -55,6 +55,8 @@
                 <column id="email"/>
                 <column id="tenant"/>
                 <column id="active"/>
+                <column id="mansione"/>
+                <column id="esterno"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

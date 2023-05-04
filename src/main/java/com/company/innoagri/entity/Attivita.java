@@ -40,14 +40,6 @@ public class Attivita {
     @Column(name = "TENANT")
     private String tenant;
 
-    public String getTenant() {
-        return tenant;
-    }
-
-    public void setTenant(String tenant) {
-        this.tenant = tenant;
-    }
-
     @Column(name = "ORE_COLLABORATORE")
     private Double oreCollaboratore;
 
@@ -85,14 +77,23 @@ public class Attivita {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Lavorazione lavorazione;
 
-    @Column(name = "DATA_")
+    @NotNull
+    @Column(name = "DATA_", nullable = false)
     private LocalDate data;
 
     @JoinTable(name = "ATTIVITA_APPEZZAMENTO_LINK",
-            joinColumns = @JoinColumn(name = "ATTIVITA_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"))
-    @ManyToMany
+            joinColumns = @JoinColumn(name = "ATTIVITA_ID"),
+            inverseJoinColumns = @JoinColumn(name = "APPEZZAMENTO_ID"))
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Appezzamento> appezzamenti;
+
+    public String getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(String tenant) {
+        this.tenant = tenant;
+    }
 
     @Column(name = "PREZZO")
     private Double prezzo;
@@ -144,6 +145,10 @@ public class Attivita {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
+    public List<Appezzamento> getAppezzamenti() {
+        return appezzamenti;
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -199,14 +204,6 @@ public class Attivita {
 
     public void setPrezzo(Double prezzo) {
         this.prezzo = prezzo;
-    }
-
-    public List<Appezzamento> getAppezzamenti() {
-        return appezzamenti;
-    }
-
-    public void setAppezzamenti(List<Appezzamento> appezzamenti) {
-        this.appezzamenti = appezzamenti;
     }
 
     public LocalDate getData() {

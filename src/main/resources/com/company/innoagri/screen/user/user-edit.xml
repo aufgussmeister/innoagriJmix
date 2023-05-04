@@ -5,8 +5,11 @@
     <data>
         <instance id="userDc"
                   class="com.company.innoagri.entity.User">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="toDoes" fetchPlan="_base"/>
+            </fetchPlan>
             <loader/>
+            <collection id="toDoesDc" property="toDoes"/>
         </instance>
     </data>
     <actions>
@@ -42,8 +45,28 @@
                 <comboBox id="tenantField" property="tenant" editable="false"/>
                 <comboBox id="timeZoneField" property="timeZoneId" visible="false"/>
                 <checkBox id="activeField" property="active"/>
+                <textField id="mansioneField" property="mansione"/>
+                <checkBox id="esternoField" property="esterno"/>
             </column>
         </form>
+        <groupBox id="toDoesBox" caption="msg://com.company.innoagri.entity/User.toDoes">
+            <table id="toDoesTable" dataContainer="toDoesDc" width="100%" height="200px">
+                <actions>
+                    <action id="exclude" type="exclude"/>
+                    <action id="edit" type="edit"/>
+                </actions>
+                <columns>
+                    <column id="descrizione"/>
+                    <column id="scadenza"/>
+                    <column id="fatto"/>
+                    <column id="presoInCarico"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="toDoesTable.exclude"/>
+                    <button action="toDoesTable.edit"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

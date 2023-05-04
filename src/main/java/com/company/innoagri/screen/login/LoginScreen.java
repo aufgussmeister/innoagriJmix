@@ -65,7 +65,7 @@ public class LoginScreen extends Screen {
     private void onInit(InitEvent event) {
         usernameField.focus();
         initLocalesField();
-        initDefaultCredentials();
+        //initDefaultCredentials();
     }
 
     private void initLocalesField() {

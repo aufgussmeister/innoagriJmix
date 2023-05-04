@@ -7,4 +7,8 @@ import com.company.innoagri.entity.Appezzamento;
 @UiDescriptor("appezzamento-browse.xml")
 @LookupComponent("appezzamentoesTable")
 public class AppezzamentoBrowse extends StandardLookup<Appezzamento> {
+    @Subscribe
+    public void onAfterShow(AfterShowEvent event) {
+
+    }
 }
