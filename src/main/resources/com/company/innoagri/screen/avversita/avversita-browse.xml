@@ -32,7 +32,7 @@
                 width="800"/>
     <layout expand="avversitasTable" spacing="true">
         <filter id="filter"
-                dataLoader="avversitasDl">
+                dataLoader="avversitasDl" collapsed="true">
             <properties include=".*"/>
             <configurations>
                 <configuration id="configuration_Nome">

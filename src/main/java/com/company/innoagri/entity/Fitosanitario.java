@@ -25,6 +25,12 @@ public class Fitosanitario {
     @Id
     private Long id;
 
+    @Column(name = "ATTIVO")
+    private Boolean attivo;
+
+    @Column(name = "SOSTANZE_ATTIVE", length = 500)
+    private String sostanzeAttive;
+
     @JoinColumn(name = "FITOSANITARIO_NAZIONALE_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private FitosanitarioNazionale fitosanitarioNazionale;
@@ -238,6 +244,22 @@ public class Fitosanitario {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+
+    public String getSostanzeAttive() {
+        return sostanzeAttive;
+    }
+
+    public void setSostanzeAttive(String sostanzeAttive) {
+        this.sostanzeAttive = sostanzeAttive;
+    }
+
+    public Boolean getAttivo() {
+        return attivo;
+    }
+
+    public void setAttivo(Boolean attivo) {
+        this.attivo = attivo;
+    }
 
     public String getTenant() {
         return tenant;

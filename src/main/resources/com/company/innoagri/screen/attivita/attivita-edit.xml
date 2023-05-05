@@ -108,7 +108,7 @@
             <groupBox id="appezzamentiBox" caption="msg://com.company.innoagri.entity/Attivita.appezzamenti">
                 <table id="appezzamentiTable" dataContainer="appezzamentiDc" width="100%" height="200px">
                     <actions>
-                        <action id="add" type="add"  />
+                        <action id="add" type="add" />
                         <action id="exclude" type="exclude"/>
                     </actions>
                     <columns>

@@ -82,8 +82,8 @@ public class Attivita {
     private LocalDate data;
 
     @JoinTable(name = "ATTIVITA_APPEZZAMENTO_LINK",
-            joinColumns = @JoinColumn(name = "ATTIVITA_ID"),
-            inverseJoinColumns = @JoinColumn(name = "APPEZZAMENTO_ID"))
+            joinColumns = @JoinColumn(name = "ATTIVITA_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"))
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Appezzamento> appezzamenti;
 

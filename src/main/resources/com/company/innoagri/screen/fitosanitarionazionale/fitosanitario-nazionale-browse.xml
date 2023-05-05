@@ -38,6 +38,8 @@
                 <configuration id="configuration_prodotto" name="Prodotto" default="true">
                     <propertyFilter property="prodotto" operation="CONTAINS" caption="Prodotto"></propertyFilter>
                     <propertyFilter property="impresa" operation="CONTAINS" caption="Impresa"></propertyFilter>
+                    <propertyFilter property="attivita" operation="CONTAINS" caption="Attività"></propertyFilter>
+                    <propertyFilter property="sostanzeAttive" operation="CONTAINS" caption="Sostanza Attiva"></propertyFilter>
                 </configuration>
             </configurations>
         </filter>

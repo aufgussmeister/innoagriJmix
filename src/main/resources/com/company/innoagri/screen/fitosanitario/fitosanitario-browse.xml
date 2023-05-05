@@ -56,6 +56,8 @@
                 <column id="doseMassima"/>
                 <column id="unitaMisua"/>
                 <column id="note"/>
+                <column id="attivo"/>
+                <column id="sostanzeAttive"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

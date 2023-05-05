@@ -2,9 +2,11 @@ package com.company.innoagri.screen.attivita;
 
 import com.company.innoagri.entity.*;
 import io.jmix.core.DataManager;
+import io.jmix.core.common.util.ParamsMap;
 import io.jmix.core.querycondition.LogicalCondition;
 import io.jmix.core.querycondition.PropertyCondition;
 import io.jmix.ui.Notifications;
+import io.jmix.ui.action.list.AddAction;
 import io.jmix.ui.component.*;
 import io.jmix.ui.model.CollectionPropertyContainer;
 import io.jmix.ui.screen.*;
@@ -12,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.inject.Named;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Date;
@@ -57,8 +60,9 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
     private CurrencyField<Number> valoreField;
     @Autowired
     private CurrencyField<Number> prezzoOraField;
-    @Autowired
-    private CollectionPropertyContainer<Appezzamento> appezzamentiDc;
+
+    @Named("appezzamentiTable.add")
+    private AddAction<Appezzamento> appezzamentiTableAdd;
 
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
@@ -156,5 +160,11 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
         ricalcoloPrezzo();
     }
 
+    /*
+    @Install(to = "appezzamentiTable.add", subject = "screenOptionsSupplier")
+    private ScreenOptions appezzamentiTableAddScreenOptionsSupplier() {
+        return new MapScreenOptions(ParamsMap.of("cliente", getEditedEntity().getCliente()));
+    }
+*/
 
 }
