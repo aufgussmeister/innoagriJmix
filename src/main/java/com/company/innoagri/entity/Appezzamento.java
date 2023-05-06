@@ -6,6 +6,8 @@ import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.annotation.TenantId;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.OnDeleteInverse;
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -105,9 +107,10 @@ public class Appezzamento {
     @JoinColumn(name = "CLIENTE_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Cliente cliente;
+
     @JoinTable(name = "ATTIVITA_APPEZZAMENTO_LINK",
-            joinColumns = @JoinColumn(name = "APPEZZAMENTO_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ATTIVITA_ID"))
+            joinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ATTIVITA_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Attivita> attivita;
 
@@ -293,5 +296,11 @@ public class Appezzamento {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @InstanceName
+    @DependsOnProperties({"varieta", "denominazione"})
+    public String getInstanceName() {
+        return String.format("%s %s", varieta, denominazione);
     }
 }

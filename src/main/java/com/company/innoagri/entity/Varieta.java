@@ -25,6 +25,7 @@ public class Varieta {
     @Id
     private Long id;
 
+    @InstanceName
     @CaseConversion
     @Column(name = "VARIETA")
     private String varieta;
@@ -154,7 +155,6 @@ public class Varieta {
         this.id = id;
     }
 
-    @InstanceName
     @DependsOnProperties({"varieta"})
     public String getInstanceName() {
         return String.format("%s", varieta);

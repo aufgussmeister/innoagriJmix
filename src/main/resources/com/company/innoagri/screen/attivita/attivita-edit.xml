@@ -17,6 +17,14 @@
             <loader/>
             <collection id="appezzamentiDc" property="appezzamenti"/>
         </instance>
+        <collection id="appezzamentoesDc" class="com.company.innoagri.entity.Appezzamento">
+            <fetchPlan extends="_local"/>
+            <loader id="appezzamentoesDl">
+                <query>
+                    <![CDATA[select e from Appezzamento e where 1=0]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -33,10 +41,10 @@
     </actions>
     <dialogMode height="80%"
                 width="60%"
-    forceDialog="true"/>
+                forceDialog="true"/>
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox" spacing="true">
-            <form id="form" dataContainer="attivitaDc" width="100%" colspan="3" >
+            <form id="form" dataContainer="attivitaDc" width="100%" colspan="3">
                 <column width="100%">
                     <entityPicker id="clienteField" property="cliente" width="100%" colspan="3" visible="false">
                         <actions>
@@ -44,86 +52,55 @@
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-                    <entityPicker id="lavorazioneField" property="lavorazione" width="100%" colspan="2" >
+                    <entityPicker id="lavorazioneField" property="lavorazione" width="100%" colspan="2">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-
                     <entityPicker id="mezzoField" property="mezzo" width="100%" colspan="2">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-
                     <dateField id="dataField" property="data" width="100%" autofill="true"/>
-
-                    <textField id="oreCollaboratoreField" property="oreCollaboratore" width="100%" />
-
-                    <comboBox id="unitaMisuraField" property="unitaMisura"  width="100%" editable="false"/>
-
+                    <textField id="oreCollaboratoreField" property="oreCollaboratore" width="100%"/>
+                    <comboBox id="unitaMisuraField" property="unitaMisura" width="100%" editable="false"/>
                     <hbox colspan="2"></hbox>
-
-                    <checkBox id="daFatturareField" property="daFatturare" width="100%"  />
-
+                    <checkBox id="daFatturareField" property="daFatturare" width="100%"/>
                     <textArea id="noteField" property="note" rows="5" width="100%" colspan="3"/>
-
                 </column>
-
                 <column width="100%">
-
-                    <timeField id="oraInizioField" property="oraInizio"  width="100%" />
-
-                    <textField id="durataField" property="durata" width="100%" />
-
-                    <textField id="qtaField" property="qta" width="100%" />
-
-                    <checkBox id="fatturatoField" property="fatturato" width="100%"  editable="false"/>
-
+                    <timeField id="oraInizioField" property="oraInizio" width="100%"/>
+                    <textField id="durataField" property="durata" width="100%"/>
+                    <textField id="qtaField" property="qta" width="100%"/>
+                    <checkBox id="fatturatoField" property="fatturato" width="100%" editable="false"/>
                 </column>
-
                 <column width="100%">
-                    <entityPicker id="collaboratoreField" property="collaboratore" width="100%" >
+                    <entityPicker id="collaboratoreField" property="collaboratore" width="100%">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-                    <entityPicker id="fatturaField" property="fattura" width="100%"  editable="false">
+                    <entityPicker id="fatturaField" property="fattura" width="100%" editable="false">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-                    <timeField id="oraFineField" property="oraFine"  width="100%" />
+                    <timeField id="oraFineField" property="oraFine" width="100%"/>
                     <currencyField id="prezzoOraField" currency="€" caption="Prezzo Ora" width="100%" editable="false"/>
                     <currencyField id="valoreField" currency="€" caption="Prezzo UM" width="100%" editable="false"/>
-                    <currencyField id="prezzoField" currency="€" property="prezzo" width="100%"  stylename="align-right" />
-                    <checkBox id="verificatoField" property="verificato" width="100%" />
-
+                    <currencyField id="prezzoField" currency="€" property="prezzo" width="100%"
+                                   stylename="align-right"/>
+                    <checkBox id="verificatoField" property="verificato" width="100%"/>
                 </column>
             </form>
-            <groupBox id="appezzamentiBox" caption="msg://com.company.innoagri.entity/Attivita.appezzamenti">
-                <table id="appezzamentiTable" dataContainer="appezzamentiDc" width="100%" height="200px">
-                    <actions>
-                        <action id="add" type="add" />
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="denominazione"/>
-                        <column id="comune"/>
-                        <column id="varieta"/>
-                        <column id="superficie"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="appezzamentiTable.add"/>
-                        <button action="appezzamentiTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
+            <twinColumn id="appezzamentiField" addAllBtnEnabled="true" optionsContainer="appezzamentoesDc" width="80%"/>
         </scrollBox>
+
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

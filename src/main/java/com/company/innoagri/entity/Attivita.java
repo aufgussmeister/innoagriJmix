@@ -1,9 +1,11 @@
 package com.company.innoagri.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.annotation.TenantId;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDelete;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -81,6 +83,7 @@ public class Attivita {
     @Column(name = "DATA_", nullable = false)
     private LocalDate data;
 
+    @OnDelete(DeletePolicy.UNLINK)
     @JoinTable(name = "ATTIVITA_APPEZZAMENTO_LINK",
             joinColumns = @JoinColumn(name = "ATTIVITA_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"))
@@ -145,6 +148,10 @@ public class Attivita {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
+    public void setAppezzamenti(List<Appezzamento> appezzamenti) {
+        this.appezzamenti = appezzamenti;
+    }
 
     public List<Appezzamento> getAppezzamenti() {
         return appezzamenti;

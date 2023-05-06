@@ -2,23 +2,31 @@ package com.company.innoagri.screen.attivita;
 
 import com.company.innoagri.entity.*;
 import io.jmix.core.DataManager;
+import io.jmix.core.common.event.Subscription;
 import io.jmix.core.common.util.ParamsMap;
 import io.jmix.core.querycondition.LogicalCondition;
 import io.jmix.core.querycondition.PropertyCondition;
+import io.jmix.ui.App;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.action.list.AddAction;
 import io.jmix.ui.component.*;
+import io.jmix.ui.component.data.BindingState;
+import io.jmix.ui.component.data.ValueSource;
+import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.CollectionPropertyContainer;
+import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Nullable;
 import javax.inject.Named;
+import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Consumer;
 
 @UiController("Attivita.edit")
 @UiDescriptor("attivita-edit.xml")
@@ -60,16 +68,27 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
     private CurrencyField<Number> valoreField;
     @Autowired
     private CurrencyField<Number> prezzoOraField;
+    @Autowired
+    private TwinColumn<Appezzamento> appezzamentiField;
+    @Autowired
+    private CollectionContainer<Appezzamento> appezzamentoesDc;
 
-    @Named("appezzamentiTable.add")
-    private AddAction<Appezzamento> appezzamentiTableAdd;
+
 
     @Subscribe
-    public void onBeforeShow(BeforeShowEvent event) {
+    public void onInitEntity(InitEntityEvent<Attivita> event) {
+        // viene eseguito solo nel caso di nuova entità
+        event.getEntity().setDaFatturare(true);
+    }
+    @Subscribe
+    public void onAfterShow(AfterShowEvent event) {
         if(Objects.isNull(getEditedEntity().getCliente())){
             clienteField.setVisible(true);
+        }else {
+            appezzamentoesDc.setItems(getEditedEntity().getCliente().getAppezzamenti());
+            appezzamentiField.setValue(getEditedEntity().getAppezzamenti());
         }
-        daFatturareField.setValue(true);
+        //daFatturareField.setValue(true);
     }
 
     public void ricalcoloPrezzo() {
@@ -145,8 +164,11 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
         ricalcoloPrezzo();
         if(Objects.nonNull(event.getValue())){
             lavorazioneField.setEditable(true);
+            appezzamentoesDc.setItems(event.getValue().getAppezzamenti());
         }else{
             lavorazioneField.setEditable(false);
+            List<Appezzamento> empty = new ArrayList<>();
+            appezzamentoesDc.setItems(empty);
         }
     }
 
@@ -158,6 +180,13 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
     @Subscribe("durataField")
     public void onDurataFieldValueChange(HasValue.ValueChangeEvent<Double> event) {
         ricalcoloPrezzo();
+    }
+
+
+    @Subscribe("appezzamentiField")
+    public void onAppezzamentiFieldValueChange(HasValue.ValueChangeEvent<Collection<Appezzamento>> event) {
+        List<Appezzamento> app = new ArrayList(appezzamentiField.getValue());
+        getEditedEntity().setAppezzamenti(app);
     }
 
     /*
