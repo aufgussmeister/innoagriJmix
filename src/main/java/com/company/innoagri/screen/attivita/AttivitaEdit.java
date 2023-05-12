@@ -89,8 +89,10 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
         if(Objects.isNull(getEditedEntity().getCliente())){
             clienteField.setVisible(true);
         }else {
-            appezzamentoesDc.setItems(getEditedEntity().getCliente().getAppezzamenti());
-            appezzamentiField.setValue(getEditedEntity().getAppezzamenti());
+            if(Objects.nonNull(getEditedEntity().getCliente().getAppezzamenti())){
+                appezzamentoesDc.setItems(getEditedEntity().getCliente().getAppezzamenti());
+                appezzamentiField.setValue(getEditedEntity().getAppezzamenti());
+            }
         }
         //daFatturareField.setValue(true);
     }
