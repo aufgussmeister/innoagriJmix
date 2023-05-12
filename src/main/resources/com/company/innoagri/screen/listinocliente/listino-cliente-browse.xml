@@ -51,6 +51,8 @@
                 <column id="lavorazione"/>
                 <column id="sconto"/>
                 <column id="tenant"/>
+                <column id="prezzoCliente"/>
+                <column id="prezzoUm"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

@@ -5,4 +5,20 @@
             <property name="creatoDa" fetchPlan="_base"/>
         </property>
     </fetchPlan>
+    <fetchPlan entity="Cliente" name="cliente-fetch-plan" extends="_base">
+        <property name="fatture" fetchPlan="_base"/>
+        <property name="listini" fetchPlan="_base">
+            <property name="lavorazione" fetchPlan="_base">
+                <property name="prezzi" fetchPlan="_base"/>
+            </property>
+        </property>
+        <property name="appezzamenti" fetchPlan="_base"/>
+        <property name="attivita" fetchPlan="_base">
+            <property name="collaboratore" fetchPlan="_base"/>
+            <property name="lavorazione" fetchPlan="_base"/>
+            <property name="appezzamenti" fetchPlan="_base"/>
+            <property name="mezzo" fetchPlan="_base"/>
+            <property name="fattura" fetchPlan="_base"/>
+        </property>
+    </fetchPlan>
 </fetchPlans>

@@ -7,7 +7,7 @@
                   class="com.company.innoagri.entity.Fitosanitario">
             <fetchPlan extends="_base">
                 <property name="fitosanitarioNazionale" fetchPlan="_base"/>
-                <property name="avversita" fetchPlan="_base" />
+                <property name="avversita" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <collection id="avversitaDc" property="avversita"/>
@@ -39,8 +39,10 @@
                     <textField id="doseMinimaField" property="doseMinima" width="100%"/>
                     <textField id="doseMassimaField" property="doseMassima" width="100%"/>
                     <comboBox id="unitaMisuaField" property="unitaMisua" caption="UM / Ettaro" width="100%"/>
-                    <textArea id="noteField" property="note" rows="5" width="100%"/>
+                    <textField id="ggCarenzaField" property="ggCarenza"/>
                     <checkBox id="attivoField" property="attivo" width="100%"/>
+                    <textArea id="noteField" property="note" rows="5" width="100%"/>
+
                 </column>
                 <column>
                     <entityPicker id="fitosanitarioNazionaleField" property="fitosanitarioNazionale" width="100%">
@@ -50,7 +52,8 @@
                         </actions>
                     </entityPicker>
                     <textField id="c1Field" property="fitosanitarioNazionale.impresa" editable="false" width="100%"/>
-                    <textField id="c2Field" property="fitosanitarioNazionale.attivita" caption="Attività" editable="false" width="100%"/>
+                    <textField id="c2Field" property="fitosanitarioNazionale.attivita" caption="Attività"
+                               editable="false" width="100%"/>
                     <textField id="c7Field" property="fitosanitarioNazionale.sostanzeAttive" editable="false"
                                width="100%"/>
                     <textField id="c8Field" property="fitosanitarioNazionale.statoAmministrativo" editable="false"
@@ -59,15 +62,15 @@
                                width="100%"/>
                     <textField id="c4Field" property="fitosanitarioNazionale.contenutoPerCentoGrammiDiProdotto"
                                editable="false" width="100%"/>
-                    <textField id="c5Field" property="fitosanitarioNazionale.scadenzaAutorizzazione" editable="false"
-                               width="100%"/>
                     <textField id="c6Field" property="fitosanitarioNazionale.indicazioniDiPericolo" editable="false"
+                               width="100%"/>
+                    <textField id="c5Field" property="fitosanitarioNazionale.scadenzaAutorizzazione" editable="false"
                                width="100%"/>
                     <buttonsPanel/>
                 </column>
             </form>
-            <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/Fitosanitario.avversita" >
-                <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="200px" >
+            <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/Fitosanitario.avversita">
+                <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="200px">
                     <actions>
                         <action id="add" type="add">
                             <properties>
@@ -81,7 +84,7 @@
                         <column id="note"/>
                     </columns>
                     <buttonsPanel>
-                        <button action="avversitaTable.add" />
+                        <button action="avversitaTable.add"/>
                         <button action="avversitaTable.exclude"/>
                     </buttonsPanel>
                 </table>

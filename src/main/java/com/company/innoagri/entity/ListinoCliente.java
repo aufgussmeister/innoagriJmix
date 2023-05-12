@@ -13,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @JmixEntity
@@ -27,12 +28,19 @@ public class ListinoCliente {
     @Id
     private Long id;
 
-    @JoinColumn(name = "LAVORAZIONE_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @JoinColumn(name = "LAVORAZIONE_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Lavorazione lavorazione;
 
     @Column(name = "SCONTO")
     private Double sconto = 0.0;
+
+    @Column(name = "PREZZO_CLIENTE")
+    private Double prezzoCliente;
+
+    @Column(name = "PREZZO_UM")
+    private Double prezzoUm;
 
     @Column(name = "VERSION", nullable = false)
     @Version
@@ -73,6 +81,22 @@ public class ListinoCliente {
     @JoinColumn(name = "CLIENTE_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
+
+    public Double getPrezzoUm() {
+        return prezzoUm;
+    }
+
+    public void setPrezzoUm(Double prezzoUm) {
+        this.prezzoUm = prezzoUm;
+    }
+
+    public Double getPrezzoCliente() {
+        return prezzoCliente;
+    }
+
+    public void setPrezzoCliente(Double prezzoCliente) {
+        this.prezzoCliente = prezzoCliente;
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -167,4 +191,7 @@ public class ListinoCliente {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
+
+

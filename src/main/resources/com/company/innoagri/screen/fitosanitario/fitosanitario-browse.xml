@@ -58,6 +58,7 @@
                 <column id="note"/>
                 <column id="attivo"/>
                 <column id="sostanzeAttive"/>
+                <column id="ggCarenza"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

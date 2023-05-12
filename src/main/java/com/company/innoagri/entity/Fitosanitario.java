@@ -25,6 +25,9 @@ public class Fitosanitario {
     @Id
     private Long id;
 
+    @Column(name = "GG_CARENZA")
+    private Integer ggCarenza;
+
     @Column(name = "ATTIVO")
     private Boolean attivo;
 
@@ -244,6 +247,14 @@ public class Fitosanitario {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+
+    public Integer getGgCarenza() {
+        return ggCarenza;
+    }
+
+    public void setGgCarenza(Integer ggCarenza) {
+        this.ggCarenza = ggCarenza;
+    }
 
     public String getSostanzeAttive() {
         return sostanzeAttive;

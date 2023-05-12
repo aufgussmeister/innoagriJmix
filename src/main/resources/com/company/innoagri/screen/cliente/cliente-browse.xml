@@ -57,6 +57,7 @@
                 <column id="comune"/>
                 <column id="email"/>
                 <column id="societa"/>
+                <column id="disattivato"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

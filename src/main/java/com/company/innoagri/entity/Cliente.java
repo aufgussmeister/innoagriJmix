@@ -38,6 +38,9 @@ public class Cliente {
     @Column(name = "SOCIETA")
     private Boolean societa;
 
+    @Column(name = "DISATTIVATO")
+    private Boolean disattivato;
+
     @OnDelete(DeletePolicy.CASCADE)
     @Composition
     @OneToMany(mappedBy = "cliente")
@@ -135,6 +138,14 @@ public class Cliente {
     @Composition
     @OneToMany(mappedBy = "cliente")
     private List<Attivita> attivita;
+
+    public Boolean getDisattivato() {
+        return disattivato;
+    }
+
+    public void setDisattivato(Boolean disattivato) {
+        this.disattivato = disattivato;
+    }
 
     public List<Attivita> getAttivita() {
         return attivita;

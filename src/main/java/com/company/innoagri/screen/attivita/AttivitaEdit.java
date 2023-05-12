@@ -1,3 +1,4 @@
+// TODO Bisogna finire la gestione della lavorazione con prezzo al cliente, e gli errori se non c'è un prezzo
 package com.company.innoagri.screen.attivita;
 
 import com.company.innoagri.entity.*;
@@ -14,8 +15,10 @@ import io.jmix.ui.component.data.BindingState;
 import io.jmix.ui.component.data.ValueSource;
 import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.CollectionPropertyContainer;
+import io.jmix.ui.model.DataContext;
 import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.screen.*;
+import org.apache.commons.collections4.Factory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +75,8 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
     private TwinColumn<Appezzamento> appezzamentiField;
     @Autowired
     private CollectionContainer<Appezzamento> appezzamentoesDc;
-
+    @Autowired
+    private DataContext dataContext;
 
 
     @Subscribe
@@ -108,7 +112,7 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
                     )
                     .one();
             unitaMisuraField.setValue(prezzoLavorazione.getUnitaDiMisura());
-            valoreField.setCaption("prezzo " + prezzoLavorazione.getUnitaDiMisura());
+            valoreField.setCaption("Prezzo " + prezzoLavorazione.getUnitaDiMisura());
             qtaField.setCaption("" + prezzoLavorazione.getUnitaDiMisura());
             if(Objects.nonNull(durataField.getValue()))
                 prezzoOraField.setValue(prezzoLavorazione.getPrezzoOra()*durataField.getValue());

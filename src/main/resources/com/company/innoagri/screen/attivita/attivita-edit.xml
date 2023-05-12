@@ -18,7 +18,9 @@
             <collection id="appezzamentiDc" property="appezzamenti"/>
         </instance>
         <collection id="appezzamentoesDc" class="com.company.innoagri.entity.Appezzamento">
-            <fetchPlan extends="_local"/>
+            <fetchPlan extends="_local">
+                <property name="varieta" fetchPlan="_local"/>
+            </fetchPlan>
             <loader id="appezzamentoesDl">
                 <query>
                     <![CDATA[select e from Appezzamento e where 1=0]]>
@@ -98,7 +100,7 @@
                     <checkBox id="verificatoField" property="verificato" width="100%"/>
                 </column>
             </form>
-            <twinColumn id="appezzamentiField" addAllBtnEnabled="true" optionsContainer="appezzamentoesDc" width="80%"/>
+            <twinColumn leftColumnCaption="Appezzamenti Cliente" rightColumnCaption="Appezzamenti Lavorati" id="appezzamentiField" addAllBtnEnabled="true" optionsContainer="appezzamentoesDc" width="100%"/>
         </scrollBox>
 
         <hbox id="editActions" spacing="true">

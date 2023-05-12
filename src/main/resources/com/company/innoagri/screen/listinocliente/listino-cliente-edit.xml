@@ -32,15 +32,21 @@
                 forceDialog="true"/>
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="listinoClienteDc">
-            <column width="350px">
-                <entityPicker id="lavorazioneField" property="lavorazione">
+            <column width="250px">
+                <entityPicker id="lavorazioneField" property="lavorazione" width="100%" colspan="2">
                     <actions>
                         <action id="entityLookup" type="entity_lookup"/>
                         <action id="entityClear" type="entity_clear"/>
                     </actions>
                 </entityPicker>
-                <textField id="scontoField" property="sconto"/>
-                <textField id="tenantField" property="tenant"/>
+                <textField id="prezzoOraLavField" caption="Prezzo Ora" editable="false" />
+                <textField id="prezzoUmLavField" caption="Prezzo UM" editable="false"/>
+
+            </column>
+
+            <column width="250px">
+                <textField id="prezzoClienteField" property="prezzoCliente" caption="Prezzo Ora" editable="false"/>
+                <textField id="prezzoUmField" property="prezzoUm" caption="Prezzo UM" editable="false"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

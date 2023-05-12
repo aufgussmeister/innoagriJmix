@@ -301,6 +301,6 @@ public class Appezzamento {
     @InstanceName
     @DependsOnProperties({"varieta", "denominazione"})
     public String getInstanceName() {
-        return String.format("%s %s", varieta, denominazione);
+        return String.format("%s - %s (%s MQ)", varieta.getVarieta(), denominazione, superficie.toString());
     }
 }
