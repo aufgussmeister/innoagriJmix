@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://prodottoPianificatoEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="prodottoPianificatoDc"
+                  class="com.company.innoagri.entity.ProdottoPianificato">
+            <fetchPlan extends="_base">
+                <property name="fitosanitario" fetchPlan="_base">
+                    <property name="fitosanitarioNazionale" fetchPlan="_base"/>
+                </property>
+                <property name="avversita" fetchPlan="_base"/>
+                <property name="varieta" fetchPlan="_base"/>
+                <property name="appezzamenti" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="avversitaDc" property="avversita"/>
+            <collection id="varietaDc" property="varieta"/>
+            <collection id="appezzamentiDc" property="appezzamenti"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="prodottoPianificatoDc">
+                <column width="350px">
+                    <entityPicker id="fitosanitarioField" property="fitosanitario">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                    <checkBox id="appezzamentiProduttiviField" property="appezzamentiProduttivi"/>
+                    <textField id="doseEttaroField" property="doseEttaro"/>
+                    <textField id="doseEttaroMinField" property="doseEttaroMin"/>
+                    <textArea id="noteField" property="note" rows="5"/>
+                    <textField id="quantitaField" property="quantita"/>
+                    <textField id="totEttariField" property="totEttari"/>
+                    <textField id="quantitaMinField" property="quantitaMin"/>
+                    <textField id="tenantField" property="tenant"/>
+                </column>
+            </form>
+            <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.avversita">
+                <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="100%">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="nome"/>
+                        <column id="note"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="avversitaTable.add"/>
+                        <button action="avversitaTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="varietaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.varieta">
+                <table id="varietaTable" dataContainer="varietaDc" width="100%" height="100%">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="varieta"/>
+                        <column id="note"/>
+                        <column id="tenant"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="varietaTable.add"/>
+                        <button action="varietaTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="appezzamentiBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.appezzamenti">
+                <table id="appezzamentiTable" dataContainer="appezzamentiDc" width="100%" height="100%">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="varieta"/>
+                        <column id="denominazione"/>
+                        <column id="comune"/>
+                        <column id="annoImpianto"/>
+                        <column id="annoSovrainnesto"/>
+                        <column id="superficie"/>
+                        <column id="distanzaAcqua"/>
+                        <column id="distanzaTraPiante"/>
+                        <column id="distanzaTraFilari"/>
+                        <column id="irrigato"/>
+                        <column id="tipoIrrigazione"/>
+                        <column id="note"/>
+                        <column id="tenant"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="appezzamentiTable.add"/>
+                        <button action="appezzamentiTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://prodottoPianificatoBrowse.caption"
+        focusComponent="prodottoPianificatoesTable">
+    <data readOnly="true">
+        <collection id="prodottoPianificatoesDc"
+                    class="com.company.innoagri.entity.ProdottoPianificato">
+            <fetchPlan extends="_base">
+                <property name="fitosanitario" fetchPlan="_base"/>
+                <property name="avversita" fetchPlan="_base"/>
+                <property name="varieta" fetchPlan="_base"/>
+                <property name="appezzamenti" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="prodottoPianificatoesDl">
+                <query>
+                    <![CDATA[select e from ProdottoPianificato e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="prodottoPianificatoesTable" spacing="true">
+        <filter id="filter"
+                dataLoader="prodottoPianificatoesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="prodottoPianificatoesTable"
+                    width="100%"
+                    dataContainer="prodottoPianificatoesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="fitosanitario"/>
+                <column id="appezzamentiProduttivi"/>
+                <column id="doseEttaro"/>
+                <column id="doseEttaroMin"/>
+                <column id="note"/>
+                <column id="quantita"/>
+                <column id="totEttari"/>
+                <column id="quantitaMin"/>
+                <column id="tenant"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="prodottoPianificatoesTable.create"/>
+                <button id="editBtn" action="prodottoPianificatoesTable.edit"/>
+                <button id="removeBtn" action="prodottoPianificatoesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -15,6 +15,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @JmixEntity
 @Table(name = "VARIETA")
@@ -68,6 +69,19 @@ public class Varieta {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+    @JoinTable(name = "PRODOTTO_PIANIFICATO_VARIETA_LINK",
+            joinColumns = @JoinColumn(name = "VARIETA_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID"))
+    @ManyToMany
+    private List<ProdottoPianificato> prodottoPianificatoes;
+
+    public List<ProdottoPianificato> getProdottoPianificatoes() {
+        return prodottoPianificatoes;
+    }
+
+    public void setProdottoPianificatoes(List<ProdottoPianificato> prodottoPianificatoes) {
+        this.prodottoPianificatoes = prodottoPianificatoes;
+    }
 
     public String getTenant() { return tenant; }
 

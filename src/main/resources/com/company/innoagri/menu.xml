@@ -2,28 +2,41 @@
 <menu-config xmlns="http://jmix.io/schema/ui/menu">
 
     <menu id="application" caption="msg://com.company.innoagri/menu.application" insertBefore="administration" expanded="true">
-        <item screen="User.browse" caption="msg://com.company.innoagri.screen.user/UserBrowse.caption" icon="USER_CIRCLE_O"/>
-        <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
-        <item screen="Cliente.browse" caption="msg://com.company.innoagri.screen.cliente/clienteBrowse.menu" icon="USERS"/>
-        <item screen="Appezzamento.browse"
-              caption="msg://com.company.innoagri.screen.appezzamento/appezzamentoBrowse.menu" icon="MAP"/>
-        <item screen="Varieta.browse" caption="msg://com.company.innoagri.screen.varieta/varietaBrowse.menu" icon="font-icon:LEAF"/>
-        <item screen="Lavorazione.browse"
-              caption="msg://com.company.innoagri.screen.lavorazione/lavorazioneBrowse.menu" icon="LIST"/>
-        <item screen="ListinoCliente.browse"
-              caption="msg://com.company.innoagri.screen.listinocliente/listinoClienteBrowse.menu"/>
-        <item screen="Mezzo.browse" caption="msg://com.company.innoagri.screen.mezzo/mezzoBrowse.menu" icon="font-icon:TRUCK"/>
-        <item screen="PrezzoLavorazione.browse"
-              caption="msg://com.company.innoagri.screen.prezzolavorazione/prezzoLavorazioneBrowse.menu"/>
+        <menu id="anagrafiche" caption="Anagrafiche" expanded="false" icon="LIST">
+            <item screen="Lavorazione.browse" caption="msg://com.company.innoagri.screen.lavorazione/lavorazioneBrowse.menu" icon="LIST"/>
+            <item screen="PrezzoLavorazione.browse" caption="msg://com.company.innoagri.screen.prezzolavorazione/prezzoLavorazioneBrowse.menu" icon="LIST"/>
+            <item screen="Mezzo.browse" caption="msg://com.company.innoagri.screen.mezzo/mezzoBrowse.menu" icon="font-icon:TRUCK"/>
+            <item screen="Varieta.browse" caption="msg://com.company.innoagri.screen.varieta/varietaBrowse.menu" icon="font-icon:LEAF"/>
+            <item screen="Appezzamento.browse" caption="msg://com.company.innoagri.screen.appezzamento/appezzamentoBrowse.menu" icon="MAP"/>
+        </menu>
+        <menu id="dipendenti" caption="Dipendenti" expanded="true" icon="font-icon:USERS">
+            <item screen="User.browse" caption="Utenti" icon="USER_CIRCLE_O"/>
+        </menu>
+        <menu id="trattamenti" caption="Trattamenti" icon="font-icon:AMBULANCE" expanded="true">
+            <item screen="Fitosanitario.browse" caption="msg://com.company.innoagri.screen.fitosanitario/fitosanitarioBrowse.menu" icon="font-icon:EXCLAMATION_TRIANGLE"/>
+            <item screen="FitosanitarioNazionale.browse" caption="msg://com.company.innoagri.screen.fitosanitarionazionale/fitosanitarioNazionaleBrowse.menu" icon="font-icon:FLAG"/>
+            <separator />
+            <item screen="Avversita.browse" caption="msg://com.company.innoagri.screen.avversita/avversitaBrowse.menu" icon="font-icon:BUG"/>
+        </menu>
+        <menu id="clienti" caption="Clienti" icon="USERS" expanded="true" >
+            <item screen="Cliente.browse" caption="msg://com.company.innoagri.screen.cliente/clienteBrowse.menu" icon="USERS"/>
+            <item screen="ListinoCliente.browse" caption="msg://com.company.innoagri.screen.listinocliente/listinoClienteBrowse.menu" icon="font-icon:LIST"/>
+            <item screen="Fattura.browse" caption="msg://com.company.innoagri.screen.fattura/fatturaBrowse.menu" icon="EURO"/>
+        </menu>
+
         <item screen="Attivita.browse" caption="msg://com.company.innoagri.screen.attivita/attivitaBrowse.menu" icon="font-icon:WRENCH"/>
-        <item screen="Fattura.browse" caption="msg://com.company.innoagri.screen.fattura/fatturaBrowse.menu" icon="EURO"/>
-        <item screen="FitosanitarioNazionale.browse"
-              caption="msg://com.company.innoagri.screen.fitosanitarionazionale/fitosanitarioNazionaleBrowse.menu" icon="font-icon:FLAG"/>
-        <item screen="Avversita.browse" caption="msg://com.company.innoagri.screen.avversita/avversitaBrowse.menu" icon="font-icon:BUG"/>
-        <item screen="Fitosanitario.browse"
-              caption="msg://com.company.innoagri.screen.fitosanitario/fitosanitarioBrowse.menu" icon="font-icon:EXCLAMATION_TRIANGLE"/>
         <item screen="ToDo.browse" caption="msg://com.company.innoagri.screen.todo/toDoBrowse.menu" icon="font-icon:CHECK_SQUARE_O"/>
-        <item screen="JpqlTest" caption="msg://com.company.innoagri.screen.jpqltest/jpqlTest.caption"/>
+
+        <menu   id="impostazioni" caption="Gestione" expanded="false">
+            <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+            <item screen="JpqlTest" caption="msg://com.company.innoagri.screen.jpqltest/jpqlTest.caption"/>
+        </menu>
+        <item screen="ProdottoPianificato.browse"
+              caption="msg://com.company.innoagri.screen.prodottopianificato/prodottoPianificatoBrowse.menu"/>
+        <item screen="CampagnaTrattamenti.browse"
+              caption="msg://com.company.innoagri.screen.campagnatrattamenti/campagnaTrattamentiBrowse.menu"/>
+        <item screen="PianificazioneTrattamento.browse"
+              caption="msg://com.company.innoagri.screen.pianificazionetrattamento/pianificazioneTrattamentoBrowse.menu"/>
     </menu>
 
 </menu-config>

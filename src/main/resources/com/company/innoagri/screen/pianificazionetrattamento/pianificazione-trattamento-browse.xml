@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://pianificazioneTrattamentoBrowse.caption"
+        focusComponent="pianificazioneTrattamentoesTable">
+    <data readOnly="true">
+        <collection id="pianificazioneTrattamentoesDc"
+                    class="com.company.innoagri.entity.PianificazioneTrattamento">
+            <fetchPlan extends="_base">
+                <property name="prodottiPianificati" fetchPlan="_base">
+                    <property name="fitosanitario" fetchPlan="_base"/>
+                    <property name="avversita" fetchPlan="_base"/>
+                    <property name="varieta" fetchPlan="_base"/>
+                    <property name="appezzamenti" fetchPlan="_base"/>
+                    <property name="pianificazioneTrattamento" fetchPlan="_base"/>
+                </property>
+                <property name="campagnaTrattamento" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="pianificazioneTrattamentoesDl">
+                <query>
+                    <![CDATA[select e from PianificazioneTrattamento e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="pianificazioneTrattamentoesTable" spacing="true">
+        <filter id="filter"
+                dataLoader="pianificazioneTrattamentoesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="pianificazioneTrattamentoesTable"
+                    width="100%"
+                    dataContainer="pianificazioneTrattamentoesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="data"/>
+                <column id="note"/>
+                <column id="tenant"/>
+                <column id="campagnaTrattamento"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="pianificazioneTrattamentoesTable.create"/>
+                <button id="editBtn" action="pianificazioneTrattamentoesTable.edit"/>
+                <button id="removeBtn" action="pianificazioneTrattamentoesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

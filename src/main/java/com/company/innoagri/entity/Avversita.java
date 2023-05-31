@@ -24,10 +24,23 @@ public class Avversita {
     @Lob
     private String note;
     @JoinTable(name = "FITOSANITARIO_AVVERSITA_LINK",
-            joinColumns = @JoinColumn(name = "AVVERSITA_ID"),
-            inverseJoinColumns = @JoinColumn(name = "FITOSANITARIO_ID"))
+            joinColumns = @JoinColumn(name = "AVVERSITA_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "FITOSANITARIO_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Fitosanitario> fitosanitari;
+    @JoinTable(name = "PRODOTTO_PIANIFICATO_AVVERSITA_LINK",
+            joinColumns = @JoinColumn(name = "AVVERSITA_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID"))
+    @ManyToMany
+    private List<ProdottoPianificato> prodottoPianificatoes;
+
+    public List<ProdottoPianificato> getProdottoPianificatoes() {
+        return prodottoPianificatoes;
+    }
+
+    public void setProdottoPianificatoes(List<ProdottoPianificato> prodottoPianificatoes) {
+        this.prodottoPianificatoes = prodottoPianificatoes;
+    }
 
     public List<Fitosanitario> getFitosanitari() {
         return fitosanitari;

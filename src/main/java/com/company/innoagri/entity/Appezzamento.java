@@ -108,10 +108,38 @@ public class Appezzamento {
             inverseJoinColumns = @JoinColumn(name = "ATTIVITA_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Attivita> attivita;
+
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @JoinColumn(name = "CLIENTE_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Cliente cliente;
+
+    @JoinTable(name = "CAMPAGNA_TRATTAMENTI_APPEZZAMENTO_LINK",
+            joinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "CAMPAGNA_TRATTAMENTI_ID", referencedColumnName = "ID"))
+    @ManyToMany
+    private List<CampagnaTrattamenti> campagnaTrattamenti;
+    @JoinTable(name = "PRODOTTO_PIANIFICATO_APPEZZAMENTO_LINK",
+            joinColumns = @JoinColumn(name = "APPEZZAMENTO_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID"))
+    @ManyToMany
+    private List<ProdottoPianificato> prodottoPianificatoes;
+
+    public List<ProdottoPianificato> getProdottoPianificatoes() {
+        return prodottoPianificatoes;
+    }
+
+    public void setProdottoPianificatoes(List<ProdottoPianificato> prodottoPianificatoes) {
+        this.prodottoPianificatoes = prodottoPianificatoes;
+    }
+
+    public List<CampagnaTrattamenti> getCampagnaTrattamenti() {
+        return campagnaTrattamenti;
+    }
+
+    public void setCampagnaTrattamenti(List<CampagnaTrattamenti> campagnaTrattamenti) {
+        this.campagnaTrattamenti = campagnaTrattamenti;
+    }
 
     public Cliente getCliente() {
         return cliente;
