@@ -2,7 +2,9 @@ package com.company.innoagri.entity;
 
 import io.jmix.core.annotation.TenantId;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.NumberFormat;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -23,6 +25,8 @@ public class CampagnaTrattamenti {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NumberFormat(pattern = "####")
+    @InstanceName
     @Column(name = "ANNO", nullable = false)
     @NotNull
     private Integer anno;

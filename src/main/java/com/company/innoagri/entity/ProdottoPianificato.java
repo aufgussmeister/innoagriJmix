@@ -4,6 +4,7 @@ import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.TenantId;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.OnDeleteInverse;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -28,6 +29,7 @@ public class ProdottoPianificato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @InstanceName
     @OnDeleteInverse(DeletePolicy.DENY)
     @JoinColumn(name = "FITOSANITARIO_ID", nullable = false)
     @NotNull
@@ -51,9 +53,6 @@ public class ProdottoPianificato {
             inverseJoinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Appezzamento> appezzamenti;
-
-    @Column(name = "APPEZZAMENTI_PRODUTTIVI")
-    private Boolean appezzamentiProduttivi;
 
     @Column(name = "DOSE_ETTARO")
     private Double doseEttaro;
@@ -104,6 +103,17 @@ public class ProdottoPianificato {
     @JoinColumn(name = "PIANIFICAZIONE_TRATTAMENTO_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private PianificazioneTrattamento pianificazioneTrattamento;
+
+    @Column(name = "TIPOLOGIA_APPEZZAMENTO")
+    private String tipologiaAppezzamento;
+
+    public TipologiaAppezzamento getTipologiaAppezzamento() {
+        return tipologiaAppezzamento == null ? null : TipologiaAppezzamento.fromId(tipologiaAppezzamento);
+    }
+
+    public void setTipologiaAppezzamento(TipologiaAppezzamento tipologiaAppezzamento) {
+        this.tipologiaAppezzamento = tipologiaAppezzamento == null ? null : tipologiaAppezzamento.getId();
+    }
 
     public PianificazioneTrattamento getPianificazioneTrattamento() {
         return pianificazioneTrattamento;
@@ -166,14 +176,6 @@ public class ProdottoPianificato {
 
     public void setDoseEttaro(Double doseEttaro) {
         this.doseEttaro = doseEttaro;
-    }
-
-    public Boolean getAppezzamentiProduttivi() {
-        return appezzamentiProduttivi;
-    }
-
-    public void setAppezzamentiProduttivi(Boolean appezzamentiProduttivi) {
-        this.appezzamentiProduttivi = appezzamentiProduttivi;
     }
 
     public List<Appezzamento> getAppezzamenti() {

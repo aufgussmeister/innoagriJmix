@@ -44,7 +44,6 @@
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-                    <checkBox id="appezzamentiProduttiviField" property="appezzamentiProduttivi"/>
                     <textField id="doseEttaroField" property="doseEttaro"/>
                     <textField id="doseEttaroMinField" property="doseEttaroMin"/>
                     <textArea id="noteField" property="note" rows="5"/>
@@ -52,41 +51,44 @@
                     <textField id="totEttariField" property="totEttari"/>
                     <textField id="quantitaMinField" property="quantitaMin"/>
                     <textField id="tenantField" property="tenant"/>
+                    <comboBox id="tipologiaAppezzamentoField" property="tipologiaAppezzamento"/>
                 </column>
             </form>
-            <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.avversita">
-                <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="100%">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="nome"/>
-                        <column id="note"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="avversitaTable.add"/>
-                        <button action="avversitaTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
-            <groupBox id="varietaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.varieta">
-                <table id="varietaTable" dataContainer="varietaDc" width="100%" height="100%">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="varieta"/>
-                        <column id="note"/>
-                        <column id="tenant"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="varietaTable.add"/>
-                        <button action="varietaTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
+            <hbox width="100%">
+                <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.avversita">
+                    <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="100%">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="nome"/>
+                            <column id="note"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="avversitaTable.add"/>
+                            <button action="avversitaTable.exclude"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+                <groupBox id="varietaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.varieta">
+                    <table id="varietaTable" dataContainer="varietaDc" width="100%" height="100%">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="varieta"/>
+                            <column id="note"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="varietaTable.add"/>
+                            <button action="varietaTable.exclude"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+            </hbox>
+
             <groupBox id="appezzamentiBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.appezzamenti">
                 <table id="appezzamentiTable" dataContainer="appezzamentiDc" width="100%" height="100%">
                     <actions>

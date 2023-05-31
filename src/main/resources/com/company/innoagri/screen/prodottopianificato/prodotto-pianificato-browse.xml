@@ -50,7 +50,6 @@
             </actions>
             <columns>
                 <column id="fitosanitario"/>
-                <column id="appezzamentiProduttivi"/>
                 <column id="doseEttaro"/>
                 <column id="doseEttaroMin"/>
                 <column id="note"/>
@@ -58,6 +57,7 @@
                 <column id="totEttari"/>
                 <column id="quantitaMin"/>
                 <column id="tenant"/>
+                <column id="tipologiaAppezzamento"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

@@ -37,10 +37,10 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="pianificazioneTrattamentoDc">
             <column width="350px">
+                <entityPicker id="campagnaTrattamentoField" property="campagnaTrattamento"/>
                 <dateField id="dataField" property="data"/>
                 <textArea id="noteField" property="note" rows="5"/>
-                <textField id="tenantField" property="tenant"/>
-                <entityPicker id="campagnaTrattamentoField" property="campagnaTrattamento"/>
+                <textField id="tenantField" property="tenant" visible="false"/>
             </column>
         </form>
         <groupBox id="prodottiPianificatiBox"
@@ -52,7 +52,7 @@
                     <action id="remove" type="remove"/>
                 </actions>
                 <columns>
-                    <column id="appezzamentiProduttivi"/>
+                    <column id="fitosanitario"/>
                     <column id="doseEttaro"/>
                     <column id="doseEttaroMin"/>
                     <column id="note"/>
@@ -60,7 +60,6 @@
                     <column id="totEttari"/>
                     <column id="quantitaMin"/>
                     <column id="tenant"/>
-                    <column id="fitosanitario"/>
                     <column id="pianificazioneTrattamento"/>
                 </columns>
                 <buttonsPanel>

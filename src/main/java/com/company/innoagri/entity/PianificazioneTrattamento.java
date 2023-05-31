@@ -3,6 +3,7 @@ package com.company.innoagri.entity;
 import io.jmix.core.annotation.TenantId;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.Composition;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,6 +28,7 @@ public class PianificazioneTrattamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @InstanceName
     @Column(name = "DATA_", nullable = false)
     @NotNull
     private LocalDate data;
