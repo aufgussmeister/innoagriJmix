@@ -17,6 +17,12 @@
         <screenSettings id="settingsFacet" auto="true"/>
     </facets>
     <actions>
+        <action id="windowCommit" caption="Salva Dati"
+                icon="font-icon:SAVE"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"
+        />
+
         <action id="windowCommitAndClose" caption="msg:///actions.Ok"
                 icon="EDITOR_OK"
                 primary="true"
@@ -124,7 +130,8 @@
 
 
                     <hbox id="editActions" spacing="true" height="AUTO" align="MIDDLE_CENTER">
-                        <button id="commitAndCloseBtn" action="windowCommitAndClose" caption="Salva"/>
+                        <button id="commitBtn" action="windowCommit" caption="Salva Dati" />
+                        <button id="commitAndCloseBtn" action="windowCommitAndClose" caption="Salva ed Esci"/>
                         <button id="closeBtn" action="windowClose" caption="Esci"/>
                     </hbox>
                     <tabSheet id="tabSheet" height="AUTO" width="100%">

@@ -90,7 +90,12 @@ public class AttivitaEdit extends StandardEditor<Attivita> {
             clienteField.setVisible(true);
         }else {
             if(Objects.nonNull(getEditedEntity().getCliente().getAppezzamenti())){
-                appezzamentoesDc.setItems(getEditedEntity().getCliente().getAppezzamenti());
+                log.info("Appezzamenti " + getEditedEntity().getCliente().getAppezzamenti().toString());
+                List<Appezzamento> aps = dataManager.load(Appezzamento.class)
+                                .query("select e from Appezzamento e where e.cliente = :cliente")
+                                        .parameter("cliente",getEditedEntity().getCliente() )
+                                                .list();
+                appezzamentoesDc.setItems(aps);
                 appezzamentiField.setValue(getEditedEntity().getAppezzamenti());
             }
         }

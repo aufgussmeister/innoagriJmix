@@ -87,7 +87,7 @@ public class Attivita {
     @JoinTable(name = "ATTIVITA_APPEZZAMENTO_LINK",
             joinColumns = @JoinColumn(name = "ATTIVITA_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"))
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Appezzamento> appezzamenti;
 
     public String getTenant() {

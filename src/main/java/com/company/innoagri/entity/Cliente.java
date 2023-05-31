@@ -139,6 +139,14 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Attivita> attivita;
 
+    public List<Appezzamento> getAppezzamenti() {
+        return appezzamenti;
+    }
+
+    public void setAppezzamenti(List<Appezzamento> appezzamenti) {
+        this.appezzamenti = appezzamenti;
+    }
+
     public Boolean getDisattivato() {
         return disattivato;
     }
@@ -177,14 +185,6 @@ public class Cliente {
 
     public void setSocieta(Boolean societa) {
         this.societa = societa;
-    }
-
-    public List<Appezzamento> getAppezzamenti() {
-        return appezzamenti;
-    }
-
-    public void setAppezzamenti(List<Appezzamento> appezzamenti) {
-        this.appezzamenti = appezzamenti;
     }
 
     public String getTenant() {

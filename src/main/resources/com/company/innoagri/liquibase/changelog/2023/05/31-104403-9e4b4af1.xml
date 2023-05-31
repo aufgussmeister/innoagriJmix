@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="innoagri">
+        <addColumn tableName="APPEZZAMENTO">
+            <column name="CLIENTE_ID" type="BIGINT"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="CLIENTE_ID" tableName="APPEZZAMENTO"/>
+    </changeSet>
+    <changeSet id="2" author="innoagri">
+        <createIndex indexName="IDX_APPEZZAMENTO_CLIENTE" tableName="APPEZZAMENTO">
+            <column name="CLIENTE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CLIENTE_ID" baseTableName="APPEZZAMENTO"
+                                 constraintName="FK_APPEZZAMENTO_ON_CLIENTE" referencedColumnNames="ID"
+                                 referencedTableName="CLIENTE"/>
+    </changeSet>
+</databaseChangeLog>

@@ -103,24 +103,15 @@ public class Appezzamento {
     @Column(name = "TENANT")
     private String tenant;
 
-    @OnDeleteInverse(DeletePolicy.CASCADE)
-    @JoinColumn(name = "CLIENTE_ID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Cliente cliente;
-
     @JoinTable(name = "ATTIVITA_APPEZZAMENTO_LINK",
             joinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ATTIVITA_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Attivita> attivita;
-
-    public List<Attivita> getAttivita() {
-        return attivita;
-    }
-
-    public void setAttivita(List<Attivita> attivita) {
-        this.attivita = attivita;
-    }
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @JoinColumn(name = "CLIENTE_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Cliente cliente;
 
     public Cliente getCliente() {
         return cliente;
@@ -128,6 +119,14 @@ public class Appezzamento {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<Attivita> getAttivita() {
+        return attivita;
+    }
+
+    public void setAttivita(List<Attivita> attivita) {
+        this.attivita = attivita;
     }
 
     public String getTenant() {
