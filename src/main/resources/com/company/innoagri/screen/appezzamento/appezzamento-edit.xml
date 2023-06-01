@@ -43,12 +43,13 @@
                     <checkBox id="irrigatoField" property="irrigato"/>
                     <textField id="tipoIrrigazioneField" property="tipoIrrigazione"/>
                     <textArea id="noteField" property="note" rows="5"/>
-                    <entityPicker id="varietaField" property="varieta">
+                    <entityPicker id="varietaField" property="varieta" required="true">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
+                    <checkBox id="nuovoImpiantoField" property="nuovoImpianto"/>
                 </column>
             </form>
         </scrollBox>

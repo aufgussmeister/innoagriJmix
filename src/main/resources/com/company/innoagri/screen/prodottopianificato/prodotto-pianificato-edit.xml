@@ -16,8 +16,34 @@
             <loader/>
             <collection id="avversitaDc" property="avversita"/>
             <collection id="varietaDc" property="varieta"/>
-            <collection id="appezzamentiDc" property="appezzamenti"/>
         </instance>
+        <collection id="appezzamentoesDc" class="com.company.innoagri.entity.Appezzamento">
+            <fetchPlan extends="_local">
+                <property name="varieta" fetchPlan="_local"/>
+            </fetchPlan>
+            <loader id="appezzamentoesDl">
+                <query>
+                    <![CDATA[select e from Appezzamento e where 1=0]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="varietasDc" class="com.company.innoagri.entity.Varieta">
+            <fetchPlan extends="_base"/>
+            <loader id="varietasDl">
+                <query>
+                    <![CDATA[select e from Varieta e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="avversitasDc" class="com.company.innoagri.entity.Avversita">
+            <fetchPlan extends="_base"/>
+            <loader id="avversitasDl">
+                <query>
+                    <![CDATA[select e from Avversita e order by e.nome]]>
+                </query>
+            </loader>
+        </collection>
+
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -55,67 +81,12 @@
                 </column>
             </form>
             <hbox width="100%">
-                <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.avversita">
-                    <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="100%">
-                        <actions>
-                            <action id="add" type="add"/>
-                            <action id="exclude" type="exclude"/>
-                        </actions>
-                        <columns>
-                            <column id="nome"/>
-                            <column id="note"/>
-                        </columns>
-                        <buttonsPanel>
-                            <button action="avversitaTable.add"/>
-                            <button action="avversitaTable.exclude"/>
-                        </buttonsPanel>
-                    </table>
-                </groupBox>
-                <groupBox id="varietaBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.varieta">
-                    <table id="varietaTable" dataContainer="varietaDc" width="100%" height="100%">
-                        <actions>
-                            <action id="add" type="add"/>
-                            <action id="exclude" type="exclude"/>
-                        </actions>
-                        <columns>
-                            <column id="varieta"/>
-                            <column id="note"/>
-                        </columns>
-                        <buttonsPanel>
-                            <button action="varietaTable.add"/>
-                            <button action="varietaTable.exclude"/>
-                        </buttonsPanel>
-                    </table>
-                </groupBox>
+                <twinColumn leftColumnCaption="Avversità" rightColumnCaption="Avversità Selezionate" id="avversitaField" addAllBtnEnabled="true" optionsContainer="avversitasDc" width="100%"/>
+                <twinColumn leftColumnCaption="Varietà" rightColumnCaption="Varietà selezionate" id="varietaField" addAllBtnEnabled="true" optionsContainer="varietasDc" width="100%"/>
             </hbox>
 
-            <groupBox id="appezzamentiBox" caption="msg://com.company.innoagri.entity/ProdottoPianificato.appezzamenti">
-                <table id="appezzamentiTable" dataContainer="appezzamentiDc" width="100%" height="100%">
-                    <actions>
-                        <action id="add" type="add"/>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="varieta"/>
-                        <column id="denominazione"/>
-                        <column id="comune"/>
-                        <column id="annoImpianto"/>
-                        <column id="annoSovrainnesto"/>
-                        <column id="superficie"/>
-                        <column id="distanzaAcqua"/>
-                        <column id="distanzaTraPiante"/>
-                        <column id="distanzaTraFilari"/>
-                        <column id="irrigato"/>
-                        <column id="tipoIrrigazione"/>
-                        <column id="note"/>
-                        <column id="tenant"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="appezzamentiTable.add"/>
-                        <button action="appezzamentiTable.exclude"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
+            <twinColumn leftColumnCaption="Appezzamenti Disponibili" rightColumnCaption="Appezzamenti da Trattare" id="appezzamentiField" addAllBtnEnabled="true" optionsContainer="appezzamentoesDc" width="100%"/>
+
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

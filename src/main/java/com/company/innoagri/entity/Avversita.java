@@ -2,6 +2,7 @@ package com.company.innoagri.entity;
 
 import io.jmix.core.entity.annotation.CaseConversion;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Avversita {
     @Id
     private Integer id;
 
+    @InstanceName
     @CaseConversion
     @Column(name = "NOME")
     private String nome;
@@ -23,14 +25,16 @@ public class Avversita {
     @Column(name = "NOTE")
     @Lob
     private String note;
+
     @JoinTable(name = "FITOSANITARIO_AVVERSITA_LINK",
             joinColumns = @JoinColumn(name = "AVVERSITA_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "FITOSANITARIO_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Fitosanitario> fitosanitari;
+
     @JoinTable(name = "PRODOTTO_PIANIFICATO_AVVERSITA_LINK",
-            joinColumns = @JoinColumn(name = "AVVERSITA_ID"),
-            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID"))
+            joinColumns = @JoinColumn(name = "AVVERSITA_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<ProdottoPianificato> prodottoPianificatoes;
 

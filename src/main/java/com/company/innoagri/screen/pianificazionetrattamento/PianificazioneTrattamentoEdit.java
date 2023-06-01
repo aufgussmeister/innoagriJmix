@@ -1,7 +1,9 @@
 package com.company.innoagri.screen.pianificazionetrattamento;
 
+import com.company.innoagri.entity.Appezzamento;
 import com.company.innoagri.entity.User;
 import com.company.innoagri.screen.attivita.AttivitaEdit;
+import io.jmix.core.DataManager;
 import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.core.security.SystemAuthenticator;
 import io.jmix.ui.component.TextField;
@@ -12,11 +14,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.List;
+
 @UiController("PianificazioneTrattamento.edit")
 @UiDescriptor("pianificazione-trattamento-edit.xml")
 @EditedEntityContainer("pianificazioneTrattamentoDc")
 
 public class PianificazioneTrattamentoEdit extends StandardEditor<PianificazioneTrattamento> {
+
     @Autowired
     private SystemAuthenticator systemAuthenticator;
     @Autowired

@@ -69,9 +69,10 @@ public class Varieta {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+
     @JoinTable(name = "PRODOTTO_PIANIFICATO_VARIETA_LINK",
-            joinColumns = @JoinColumn(name = "VARIETA_ID"),
-            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID"))
+            joinColumns = @JoinColumn(name = "VARIETA_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<ProdottoPianificato> prodottoPianificatoes;
 

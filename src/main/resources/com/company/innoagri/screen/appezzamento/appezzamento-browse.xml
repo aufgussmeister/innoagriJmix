@@ -60,6 +60,7 @@
                 <column id="tipoIrrigazione"/>
                 <column id="note"/>
                 <column id="varieta"/>
+                <column id="nuovoImpianto"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

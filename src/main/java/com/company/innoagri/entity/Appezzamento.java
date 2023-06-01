@@ -30,6 +30,9 @@ public class Appezzamento {
     @Id
     private Long id;
 
+    @Column(name = "NUOVO_IMPIANTO")
+    private Boolean nuovoImpianto = false;
+
     @Column(name = "DENOMINAZIONE")
     private String denominazione;
 
@@ -119,11 +122,20 @@ public class Appezzamento {
             inverseJoinColumns = @JoinColumn(name = "CAMPAGNA_TRATTAMENTI_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<CampagnaTrattamenti> campagnaTrattamenti;
+
     @JoinTable(name = "PRODOTTO_PIANIFICATO_APPEZZAMENTO_LINK",
-            joinColumns = @JoinColumn(name = "APPEZZAMENTO_ID"),
-            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID"))
+            joinColumns = @JoinColumn(name = "APPEZZAMENTO_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODOTTO_PIANIFICATO_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<ProdottoPianificato> prodottoPianificatoes;
+
+    public Boolean getNuovoImpianto() {
+        return nuovoImpianto;
+    }
+
+    public void setNuovoImpianto(Boolean nuovoImpianto) {
+        this.nuovoImpianto = nuovoImpianto;
+    }
 
     public List<ProdottoPianificato> getProdottoPianificatoes() {
         return prodottoPianificatoes;
@@ -326,8 +338,8 @@ public class Appezzamento {
     }
 
     @InstanceName
-    @DependsOnProperties({"varieta", "denominazione"})
+    @DependsOnProperties({"varieta", "denominazione", "cliente"})
     public String getInstanceName() {
-        return String.format("%s - %s (%s MQ)", varieta.getVarieta(), denominazione, superficie.toString());
+        return String.format("%s %s - %s (%s MQ)",cliente.getCliente(), varieta.getVarieta(), denominazione, superficie.toString());
     }
 }
