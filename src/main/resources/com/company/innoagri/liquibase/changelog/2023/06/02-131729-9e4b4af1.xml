@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="innoagri">
+        <createTable tableName="CAUSALI_MOVIMENTAZIONI">
+            <column autoIncrement="true" name="ID" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CAUSALI_MOVIMENTAZIONI"/>
+            </column>
+            <column name="CAUSALE" type="VARCHAR(255)"/>
+            <column name="SEGNO" type="INT"/>
+            <column name="UUID" type="UUID"/>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="innoagri">
+        <createTable tableName="MOVIMENTO_FITOSANITARIO">
+            <column autoIncrement="true" name="ID" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_MOVIMENTO_FITOSANITARIO"/>
+            </column>
+            <column name="CAUSALE_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FITOSANITARIO_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUANTITA" type="DOUBLE"/>
+            <column name="VALORE" type="DOUBLE"/>
+            <column name="NOTE" type="CLOB"/>
+            <column name="DATA_" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="QUANTITA_MIN" type="DOUBLE"/>
+            <column name="UUID" type="UUID"/>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="innoagri">
+        <createIndex indexName="IDX_MOVIMENTO_FITOSANITARIO_CAUSALE" tableName="MOVIMENTO_FITOSANITARIO">
+            <column name="CAUSALE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CAUSALE_ID" baseTableName="MOVIMENTO_FITOSANITARIO"
+                                 constraintName="FK_MOVIMENTO_FITOSANITARIO_ON_CAUSALE" referencedColumnNames="ID"
+                                 referencedTableName="CAUSALI_MOVIMENTAZIONI"/>
+    </changeSet>
+    <changeSet id="4" author="innoagri">
+        <createIndex indexName="IDX_MOVIMENTO_FITOSANITARIO_FITOSANITARIO" tableName="MOVIMENTO_FITOSANITARIO">
+            <column name="FITOSANITARIO_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="FITOSANITARIO_ID" baseTableName="MOVIMENTO_FITOSANITARIO"
+                                 constraintName="FK_MOVIMENTO_FITOSANITARIO_ON_FITOSANITARIO" referencedColumnNames="ID"
+                                 referencedTableName="FITOSANITARIO"/>
+    </changeSet>
+</databaseChangeLog>

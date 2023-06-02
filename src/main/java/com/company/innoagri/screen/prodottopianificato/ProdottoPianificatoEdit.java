@@ -42,7 +42,6 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
     @Autowired
     private TextField<String> tenantField;
 
-
     @Autowired
     private ComboBox<TipologiaAppezzamento> tipologiaAppezzamentoField;
     @Autowired
@@ -57,6 +56,8 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
     private TextField<String> totEttariField;
     @Autowired
     private TwinColumn<Varieta> varietaField;
+    @Autowired
+    private TwinColumn<Avversita> avversitaField;
 
 
     @Subscribe
@@ -78,7 +79,14 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
         varietaField.setValue(getEditedEntity().getVarieta());
 
         tipologiaAppezzamentoField.setValue(TipologiaAppezzamento.TUTTI);
+        avversitaField.setValue(getEditedEntity().getAvversita());
 
+        if(Objects.nonNull(getEditedEntity().getFitosanitario())){
+            doseEttaroField.setCaption(getEditedEntity().getFitosanitario().getUnitaMisua() + "/Ettaro");
+            doseEttaroMinField.setCaption(getEditedEntity().getFitosanitario().getUnitaMisua() + "/Ettaro Min");
+        }
+
+        tipologiaAppezzamentoField.setValue(getEditedEntity().getTipologiaAppezzamento());
     }
 
     public void updateAppezzamenti() {
@@ -134,7 +142,8 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
 
     @Subscribe("tipologiaAppezzamentoField")
     public void onTipologiaAppezzamentoFieldValueChange(HasValue.ValueChangeEvent<TipologiaAppezzamento> event) {
-     updateAppezzamenti();
+        getEditedEntity().setTipologiaAppezzamento(event.getValue());
+        updateAppezzamenti();
     }
 
 
@@ -165,5 +174,11 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
             quantitaMinField.setValue(event.getValue()* Double.parseDouble(totEttariField.getValue()));
         else
             quantitaMinField.setValue(0.0);
+    }
+
+    @Subscribe("fitosanitarioField")
+    public void onFitosanitarioFieldValueChange(HasValue.ValueChangeEvent<Fitosanitario> event) {
+        doseEttaroField.setCaption(event.getValue().getUnitaMisua() + " Ettaro");
+        doseEttaroMinField.setCaption(event.getValue().getUnitaMisua() + " Ettaro Min");
     }
 }

@@ -34,18 +34,22 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="pianificazioneTrattamentoDc">
-            <column width="350px">
-                <entityPicker id="campagnaTrattamentoField" property="campagnaTrattamento"/>
-                <dateField id="dataField" property="data"/>
-                <textArea id="noteField" property="note" rows="5"/>
-                <textField id="tenantField" property="tenant" visible="false"/>
-            </column>
-        </form>
+    <layout spacing="true" expand="editActions" >
+        <groupBox orientation="horizontal" spacing="true" caption="Pianificazione Trattamento" css="background-color: #f4f4f4">
+            <form id="form" dataContainer="pianificazioneTrattamentoDc" width="100%">
+                <column >
+                    <dateField id="dataField" property="data" width="100%" colspan="1"/>
+                    <textArea id="noteField" property="note" rows="5" colspan="2" width="100%"/>
+                    <textField id="tenantField" property="tenant" visible="false" />
+                </column>
+                <column>
+                    <entityPicker id="campagnaTrattamentoField" property="campagnaTrattamento" width="100%" colspan="1" editable="false"/>
+                </column>
+            </form>
+        </groupBox>
         <groupBox id="prodottiPianificatiBox"
                   caption="msg://com.company.innoagri.entity/PianificazioneTrattamento.prodottiPianificati">
-            <table id="prodottiPianificatiTable" dataContainer="prodottiPianificatiDc" width="100%" height="100%">
+            <table id="prodottiPianificatiTable" dataContainer="prodottiPianificatiDc" width="100%" height="500px" editable="false">
                 <actions>
                     <action id="create" type="create"/>
                     <action id="edit" type="edit"/>

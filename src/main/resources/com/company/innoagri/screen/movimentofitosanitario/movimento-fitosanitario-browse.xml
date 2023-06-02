@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://movimentoFitosanitarioBrowse.caption"
+        focusComponent="movimentoFitosanitariosTable">
+    <data readOnly="true">
+        <collection id="movimentoFitosanitariosDc"
+                    class="com.company.innoagri.entity.MovimentoFitosanitario">
+            <fetchPlan extends="_base">
+                <property name="causale" fetchPlan="_base"/>
+                <property name="fitosanitario" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="movimentoFitosanitariosDl">
+                <query>
+                    <![CDATA[select e from MovimentoFitosanitario e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="movimentoFitosanitariosTable" spacing="true">
+        <filter id="filter"
+                dataLoader="movimentoFitosanitariosDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="movimentoFitosanitariosTable"
+                    width="100%"
+                    dataContainer="movimentoFitosanitariosDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="causale"/>
+                <column id="fitosanitario"/>
+                <column id="quantita"/>
+                <column id="valore"/>
+                <column id="note"/>
+                <column id="data"/>
+                <column id="quantitaMin"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="movimentoFitosanitariosTable.create"/>
+                <button id="editBtn" action="movimentoFitosanitariosTable.edit"/>
+                <button id="removeBtn" action="movimentoFitosanitariosTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
