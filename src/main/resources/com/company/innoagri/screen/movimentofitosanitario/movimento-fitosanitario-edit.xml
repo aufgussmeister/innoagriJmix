@@ -48,6 +48,7 @@
                     <textArea id="noteField" property="note" rows="5"/>
                     <dateField id="dataField" property="data"/>
                     <textField id="quantitaMinField" property="quantitaMin"/>
+                    <textField id="idField" property="id"/>
                 </column>
             </form>
         </scrollBox>

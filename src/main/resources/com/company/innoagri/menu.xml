@@ -42,6 +42,9 @@
               caption="msg://com.company.innoagri.screen.movimentofitosanitario/movimentoFitosanitarioBrowse.menu"/>
         <item screen="CausaliMovimentazioni.browse"
               caption="msg://com.company.innoagri.screen.causalimovimentazioni/causaliMovimentazioniBrowse.menu"/>
+        <item screen="Fornitore.browse" caption="msg://com.company.innoagri.screen.fornitore/fornitoreBrowse.menu"/>
+        <item screen="DocumentoFitosanitario.browse"
+              caption="msg://com.company.innoagri.screen.documentofitosanitario/documentoFitosanitarioBrowse.menu"/>
 
     </menu>
 

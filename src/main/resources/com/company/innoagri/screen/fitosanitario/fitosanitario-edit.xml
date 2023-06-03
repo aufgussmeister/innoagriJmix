@@ -42,7 +42,7 @@
                     <textField id="ggCarenzaField" property="ggCarenza"/>
                     <checkBox id="attivoField" property="attivo" width="100%"/>
                     <textArea id="noteField" property="note" rows="5" width="100%"/>
-
+                    <textField id="prezzoField" property="prezzo"/>
                 </column>
                 <column>
                     <entityPicker id="fitosanitarioNazionaleField" property="fitosanitarioNazionale" width="100%">

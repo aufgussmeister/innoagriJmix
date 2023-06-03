@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://movimentoFitosanitarioBrowse.caption"
-        focusComponent="movimentoFitosanitariosTable">
+        caption="msg://fornitoreBrowse.caption"
+        focusComponent="fornitoresTable">
     <data readOnly="true">
-        <collection id="movimentoFitosanitariosDc"
-                    class="com.company.innoagri.entity.MovimentoFitosanitario">
-            <fetchPlan extends="_base">
-                <property name="causale" fetchPlan="_base"/>
-                <property name="fitosanitario" fetchPlan="_base"/>
-            </fetchPlan>
-            <loader id="movimentoFitosanitariosDl">
+        <collection id="fornitoresDc"
+                    class="com.company.innoagri.entity.Fornitore">
+            <fetchPlan extends="_base"/>
+            <loader id="fornitoresDl">
                 <query>
-                    <![CDATA[select e from MovimentoFitosanitario e]]>
+                    <![CDATA[select e from Fornitore e]]>
                 </query>
             </loader>
         </collection>
@@ -33,35 +30,31 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="movimentoFitosanitariosTable" spacing="true">
+    <layout expand="fornitoresTable" spacing="true">
         <filter id="filter"
-                dataLoader="movimentoFitosanitariosDl">
+                dataLoader="fornitoresDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="movimentoFitosanitariosTable"
+        <groupTable id="fornitoresTable"
                     width="100%"
-                    dataContainer="movimentoFitosanitariosDc">
+                    dataContainer="fornitoresDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="causale"/>
-                <column id="fitosanitario"/>
-                <column id="quantita"/>
-                <column id="valore"/>
+                <column id="ragioneSociale"/>
                 <column id="note"/>
-                <column id="data"/>
-                <column id="quantitaMin"/>
-                <column id="id"/>
+                <column id="attivo"/>
+                <column id="tenant"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="movimentoFitosanitariosTable.create"/>
-                <button id="editBtn" action="movimentoFitosanitariosTable.edit"/>
-                <button id="removeBtn" action="movimentoFitosanitariosTable.remove"/>
+                <button id="createBtn" action="fornitoresTable.create"/>
+                <button id="editBtn" action="fornitoresTable.edit"/>
+                <button id="removeBtn" action="fornitoresTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

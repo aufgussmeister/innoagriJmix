@@ -59,6 +59,7 @@
                 <column id="attivo"/>
                 <column id="sostanzeAttive"/>
                 <column id="ggCarenza"/>
+                <column id="prezzo"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

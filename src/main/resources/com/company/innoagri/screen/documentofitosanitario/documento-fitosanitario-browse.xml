@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://movimentoFitosanitarioBrowse.caption"
-        focusComponent="movimentoFitosanitariosTable">
+        caption="msg://documentoFitosanitarioBrowse.caption"
+        focusComponent="documentoFitosanitariosTable">
     <data readOnly="true">
-        <collection id="movimentoFitosanitariosDc"
-                    class="com.company.innoagri.entity.MovimentoFitosanitario">
-            <fetchPlan extends="_base">
-                <property name="causale" fetchPlan="_base"/>
-                <property name="fitosanitario" fetchPlan="_base"/>
-            </fetchPlan>
-            <loader id="movimentoFitosanitariosDl">
+        <collection id="documentoFitosanitariosDc"
+                    class="com.company.innoagri.entity.DocumentoFitosanitario">
+            <fetchPlan extends="_base"/>
+            <loader id="documentoFitosanitariosDl">
                 <query>
-                    <![CDATA[select e from MovimentoFitosanitario e]]>
+                    <![CDATA[select e from DocumentoFitosanitario e]]>
                 </query>
             </loader>
         </collection>
@@ -33,35 +30,32 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="movimentoFitosanitariosTable" spacing="true">
+    <layout expand="documentoFitosanitariosTable" spacing="true">
         <filter id="filter"
-                dataLoader="movimentoFitosanitariosDl">
+                dataLoader="documentoFitosanitariosDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="movimentoFitosanitariosTable"
+        <groupTable id="documentoFitosanitariosTable"
                     width="100%"
-                    dataContainer="movimentoFitosanitariosDc">
+                    dataContainer="documentoFitosanitariosDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="causale"/>
-                <column id="fitosanitario"/>
-                <column id="quantita"/>
-                <column id="valore"/>
-                <column id="note"/>
+                <column id="tipoDocumento"/>
                 <column id="data"/>
-                <column id="quantitaMin"/>
-                <column id="id"/>
+                <column id="note"/>
+                <column id="riferimentoDocumentoEsterno"/>
+                <column id="tenant"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="movimentoFitosanitariosTable.create"/>
-                <button id="editBtn" action="movimentoFitosanitariosTable.edit"/>
-                <button id="removeBtn" action="movimentoFitosanitariosTable.remove"/>
+                <button id="createBtn" action="documentoFitosanitariosTable.create"/>
+                <button id="editBtn" action="documentoFitosanitariosTable.edit"/>
+                <button id="removeBtn" action="documentoFitosanitariosTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

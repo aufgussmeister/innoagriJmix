@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="innoagri">
+        <createTable tableName="DOCUMENTO_FITOSANITARIO">
+            <column autoIncrement="true" name="ID" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DOCUMENTO_FITOSANITARIO"/>
+            </column>
+            <column name="TIPO_DOCUMENTO" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CLIENTE_ID" type="BIGINT"/>
+            <column name="FORNITORE_ID" type="BIGINT"/>
+            <column name="DATA_" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTE" type="CLOB"/>
+            <column name="RIFERIMENTO_DOCUMENTO_ESTERNO" type="VARCHAR(255)"/>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="TENANT" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="innoagri">
+        <createTable tableName="FORNITORE">
+            <column autoIncrement="true" name="ID" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_FORNITORE"/>
+            </column>
+            <column name="RAGIONE_SOCIALE" type="VARCHAR(255)"/>
+            <column name="NOTE" type="CLOB"/>
+            <column name="ATTIVO" type="BOOLEAN"/>
+            <column name="CREATED_BY" type="VARCHAR(255)"/>
+            <column name="CREATED_DATE" type="DATETIME"/>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR(255)"/>
+            <column name="LAST_MODIFIED_DATE" type="DATETIME"/>
+            <column name="TENANT" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="innoagri">
+        <addColumn tableName="MOVIMENTO_FITOSANITARIO">
+            <column name="DOCUMENTO_FITOSANITARIO_ID" type="BIGINT"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="DOCUMENTO_FITOSANITARIO_ID" tableName="MOVIMENTO_FITOSANITARIO"/>
+    </changeSet>
+    <changeSet id="4" author="innoagri">
+        <addColumn tableName="FITOSANITARIO">
+            <column name="PREZZO" type="DOUBLE"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="5" author="innoagri">
+        <addColumn tableName="MOVIMENTO_FITOSANITARIO">
+            <column name="TENANT" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="6" author="innoagri">
+        <createIndex indexName="IDX_DOCUMENTO_FITOSANITARIO_CLIENTE" tableName="DOCUMENTO_FITOSANITARIO">
+            <column name="CLIENTE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CLIENTE_ID" baseTableName="DOCUMENTO_FITOSANITARIO"
+                                 constraintName="FK_DOCUMENTO_FITOSANITARIO_ON_CLIENTE" referencedColumnNames="ID"
+                                 referencedTableName="CLIENTE"/>
+    </changeSet>
+    <changeSet id="7" author="innoagri">
+        <createIndex indexName="IDX_DOCUMENTO_FITOSANITARIO_FORNITORE" tableName="DOCUMENTO_FITOSANITARIO">
+            <column name="FORNITORE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="FORNITORE_ID" baseTableName="DOCUMENTO_FITOSANITARIO"
+                                 constraintName="FK_DOCUMENTO_FITOSANITARIO_ON_FORNITORE" referencedColumnNames="ID"
+                                 referencedTableName="FORNITORE"/>
+    </changeSet>
+    <changeSet id="8" author="innoagri">
+        <createIndex indexName="IDX_MOVIMENTO_FITOSANITARIO_DOCUMENTO_FITOSANITARIO"
+                     tableName="MOVIMENTO_FITOSANITARIO">
+            <column name="DOCUMENTO_FITOSANITARIO_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="DOCUMENTO_FITOSANITARIO_ID" baseTableName="MOVIMENTO_FITOSANITARIO"
+                                 constraintName="FK_MOVIMENTO_FITOSANITARIO_ON_DOCUMENTO_FITOSANITARIO"
+                                 onDelete="CASCADE" referencedColumnNames="ID"
+                                 referencedTableName="DOCUMENTO_FITOSANITARIO"/>
+    </changeSet>
+</databaseChangeLog>

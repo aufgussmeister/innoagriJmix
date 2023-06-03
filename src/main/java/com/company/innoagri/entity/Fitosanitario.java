@@ -26,6 +26,9 @@ public class Fitosanitario {
     @Id
     private Long id;
 
+    @Column(name = "PREZZO")
+    private Double prezzo;
+
     @Column(name = "GG_CARENZA")
     private Integer ggCarenza;
 
@@ -249,6 +252,14 @@ public class Fitosanitario {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+
+    public Double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(Double prezzo) {
+        this.prezzo = prezzo;
+    }
 
     public Integer getGgCarenza() {
         return ggCarenza;
