@@ -50,6 +50,8 @@
             <columns>
                 <column id="fitosanitarioNazionale"/>
                 <column id="prodotto"/>
+                <column id="qta" caption="Qtà" />
+                <column id="qtaMin" caption="Qtà Min"/>
                 <column id="impresa"/>
                 <column id="attivita"/>
                 <column id="doseMinima"/>

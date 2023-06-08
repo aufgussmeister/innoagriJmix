@@ -12,18 +12,26 @@
         <menu id="dipendenti" caption="Dipendenti" expanded="true" icon="font-icon:USERS">
             <item screen="User.browse" caption="Utenti" icon="USER_CIRCLE_O"/>
         </menu>
-        <menu id="trattamenti" caption="Trattamenti" icon="font-icon:AMBULANCE" expanded="true">
-            <item screen="CampagnaTrattamenti.browse" caption="Campagne Trattamenti" icon="font-icon:MAP"/>
-            <menu id="pianificazioneTrattamenti" caption="Pianificazione" icon="font-icon:CLOCK_O" expanded="true">
-                <item screen="PianificazioneTrattamento.browse" caption="Trattamenti Pianificati" icon="CALENDAR_CHECK_O"/>
-                <!-- <item screen="ProdottoPianificato.browse" caption="msg://com.company.innoagri.screen.prodottopianificato/prodottoPianificatoBrowse.menu"  /> -->
-            </menu>
+        <menu id="fitosanitari" caption="Fitosanitari" expanded="false" icon="font-icon:BUG">
+            <item caption="Carico DDT" icon="font-icon:PLUS_CIRCLE" screen="DocumentoFitosanitario.edit">
+                <properties>
+                    <property name="tipoMovimento" value="CaricoDDT"/>
+                </properties>
+            </item>
             <menu id="anagrafichePs" caption="Anagrafiche" icon="LIST" expanded="false">
                 <item screen="Fitosanitario.browse" caption="msg://com.company.innoagri.screen.fitosanitario/fitosanitarioBrowse.menu" icon="font-icon:EXCLAMATION_TRIANGLE"/>
                 <item screen="FitosanitarioNazionale.browse" caption="msg://com.company.innoagri.screen.fitosanitarionazionale/fitosanitarioNazionaleBrowse.menu" icon="font-icon:FLAG"/>
                 <separator />
                 <item screen="Avversita.browse" caption="msg://com.company.innoagri.screen.avversita/avversitaBrowse.menu" icon="font-icon:BUG"/>
             </menu>
+        </menu>
+        <menu id="trattamenti" caption="Trattamenti" icon="font-icon:AMBULANCE" expanded="true">
+            <item screen="CampagnaTrattamenti.browse" caption="Campagne Trattamenti" icon="font-icon:MAP"/>
+            <menu id="pianificazioneTrattamenti" caption="Pianificazione" icon="font-icon:CLOCK_O" expanded="true">
+                <item screen="PianificazioneTrattamento.browse" caption="Trattamenti Pianificati" icon="CALENDAR_CHECK_O"/>
+                <!-- <item screen="ProdottoPianificato.browse" caption="msg://com.company.innoagri.screen.prodottopianificato/prodottoPianificatoBrowse.menu"  /> -->
+            </menu>
+
         </menu>
         <menu id="clienti" caption="Clienti" icon="USERS" expanded="true" >
             <item screen="Cliente.browse" caption="msg://com.company.innoagri.screen.cliente/clienteBrowse.menu" icon="USERS"/>

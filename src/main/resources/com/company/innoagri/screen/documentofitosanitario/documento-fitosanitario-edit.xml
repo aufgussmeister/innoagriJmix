@@ -13,6 +13,14 @@
             <loader/>
             <collection id="movimentiDc" property="movimenti"/>
         </instance>
+        <collection id="fornitoresDc" class="com.company.innoagri.entity.Fornitore">
+            <fetchPlan extends="_base"/>
+            <loader id="fornitoresDl">
+                <query>
+                    <![CDATA[select e from Fornitore e where e.attivo=true]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -29,30 +37,45 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true" expand="scrollBox">
+    <layout spacing="true" expand="scrollBox" responsive="true">
         <scrollBox id="scrollBox" spacing="true">
-            <form id="form" dataContainer="documentoFitosanitarioDc">
-                <column width="350px">
-                    <comboBox id="tipoDocumentoField" property="tipoDocumento"/>
-                    <entityPicker id="clienteField" property="cliente">
+            <form id="form" dataContainer="documentoFitosanitarioDc" width="100%">
+                <column width="100%">
+                    <label id="titoloPaginaLbl" width="100%" stylename="h2" colspan="3" />
+                    <label colspan="3"></label>
+                    <comboBox id="tipoDocumentoField" property="tipoDocumento" width="100%" colspan="3"/>
+                    <dateField id="dataField" property="data" width="100%"/>
+                    <entityComboBox id="clienteField" property="cliente" width="100%">
                         <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityLookup" type="entity_lookup">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
-                    </entityPicker>
-                    <entityPicker id="fornitoreField" property="fornitore">
-                        <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
-                            <action id="entityClear" type="entity_clear"/>
-                        </actions>
-                    </entityPicker>
-                    <dateField id="dataField" property="data"/>
-                    <textArea id="noteField" property="note" rows="5"/>
-                    <textField id="riferimentoDocumentoEsternoField" property="riferimentoDocumentoEsterno"/>
+                    </entityComboBox>
+                    <textArea id="noteField" property="note" rows="5" width="100%" colspan="3"/>
                     <textField id="tenantField" property="tenant"/>
                 </column>
+                <column width="100%">
+                    <entityComboBox id="fornitoreField" property="fornitore" optionsContainer="fornitoresDc" width="100%">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityComboBox>
+
+                </column>
+                <column width="100%">
+                    <textField id="riferimentoDocumentoEsternoField" property="riferimentoDocumentoEsterno" caption="Rif. DDT Fornitore" width="100%"/>
+                </column>
             </form>
-            <groupBox id="movimentiBox" caption="msg://com.company.innoagri.entity/DocumentoFitosanitario.movimenti">
+            <groupBox id="movimentiBox" caption="Righe Documento">
                 <table id="movimentiTable" dataContainer="movimentiDc" width="100%" height="100%">
                     <actions>
                         <action id="create" type="create"/>
@@ -79,5 +102,6 @@
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>
+        <htmlBox/>
     </layout>
 </window>

@@ -33,11 +33,12 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="movimentoFitosanitariosTable" spacing="true">
+    <layout expand="movimentoFitosanitariosTable" spacing="true" width="100%">
         <filter id="filter"
                 dataLoader="movimentoFitosanitariosDl">
             <properties include=".*"/>
         </filter>
+
         <groupTable id="movimentoFitosanitariosTable"
                     width="100%"
                     dataContainer="movimentoFitosanitariosDc">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
-        caption="msg://movimentoFitosanitarioEdit.caption"
+        caption="Riga Movimento"
         focusComponent="form">
     <data>
         <instance id="movimentoFitosanitarioDc"
@@ -11,6 +11,16 @@
             </fetchPlan>
             <loader/>
         </instance>
+        <collection id="fitosanitariosDc" class="com.company.innoagri.entity.Fitosanitario">
+            <fetchPlan extends="_local"/>
+            <loader id="fitosanitariosDl">
+                <query>
+                    <![CDATA[select e from Fitosanitario e where e.attivo=true]]>
+                </query>
+            </loader>
+        </collection>
+
+
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -26,29 +36,38 @@
                 icon="EDITOR_CANCEL"/>
     </actions>
     <dialogMode height="600"
-                width="800"/>
-    <layout spacing="true" expand="scrollBox">
-        <scrollBox id="scrollBox" spacing="true">
-            <form id="form" dataContainer="movimentoFitosanitarioDc">
-                <column width="350px">
-                    <entityPicker id="causaleField" property="causale">
+                width="800" forceDialog="true"/>
+    <layout spacing="true" expand="scrollBox" width="100%">
+        <scrollBox id="scrollBox" spacing="true" width="100%">
+            <form id="form" dataContainer="movimentoFitosanitarioDc" width="100%">
+                <column width="100%">
+                    <entityPicker id="causaleField" property="causale" editable="false" width="100%">
                         <actions>
                             <action id="entityLookup" type="entity_lookup"/>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityPicker>
-                    <entityPicker id="fitosanitarioField" property="fitosanitario">
+                    <dateField id="dataField" property="data" width="100%"/>
+
+
+
+                    <entityComboBox id="fitosanitarioField" property="fitosanitario" optionsContainer="fitosanitariosDc" width="100%">
                         <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityLookup" type="entity_lookup" >
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                    <property name="screenClass" value="com.company.innoagri.screen.fitosanitario.FitosanitarioBrowse" />
+                                </properties>
+                            </action>
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
-                    </entityPicker>
-                    <textField id="quantitaField" property="quantita"/>
-                    <textField id="valoreField" property="valore"/>
-                    <textArea id="noteField" property="note" rows="5"/>
-                    <dateField id="dataField" property="data"/>
-                    <textField id="quantitaMinField" property="quantitaMin"/>
-                    <textField id="idField" property="id"/>
+                    </entityComboBox>
+                    <textField id="quantitaField" property="quantita" width="100%"/>
+                    <textField id="valoreField" property="valore" caption="Prezzo €" width="100%"/>
+                    <textField datatype="double" id="prezzoUnitario" caption="P.U." width="100%" editable="false"/>
+                    <textArea id="noteField" property="note" rows="5" width="100%"/>
+                    <textField id="quantitaMinField" property="quantitaMin" width="100%"/>
+                    <textField id="idField" property="id" visible="false" width="100%"/>
                 </column>
             </form>
         </scrollBox>
