@@ -27,7 +27,7 @@ public class Fitosanitario {
     private Long id;
 
     @Column(name = "PREZZO")
-    private Double prezzo;
+    private Double prezzo = 0.0;
 
     @Column(name = "GG_CARENZA")
     private Integer ggCarenza;

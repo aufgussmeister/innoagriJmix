@@ -11,6 +11,31 @@
             <collection id="fattureDc" property="fatture"/>
             <collection id="attivitaDc" property="attivita"/>
         </instance>
+        <collection id="documentoFitosanitariosDc" class="com.company.innoagri.entity.DocumentoFitosanitario">
+            <fetchPlan extends="_local"/>
+            <loader id="documentoFitosanitariosDl">
+                <query>
+                    <![CDATA[select e from DocumentoFitosanitario e where 1=0]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="movimentoFitosanitariosDc" class="com.company.innoagri.entity.MovimentoFitosanitario">
+            <fetchPlan extends="_base"/>
+            <loader id="movimentoFitosanitariosDl">
+                <query>
+                    <![CDATA[select e from MovimentoFitosanitario e where 1=0]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="campagnaTrattamentisDc" class="com.company.innoagri.entity.CampagnaTrattamenti"
+                    fetchPlan="_local">
+            <loader id="campagnaTrattamentisDl">
+                <query>
+                    <![CDATA[select e from CampagnaTrattamenti e]]>
+                </query>
+            </loader>
+        </collection>
+
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -199,6 +224,61 @@
                                     </buttonsPanel>
                                 </table>
                             </groupBox>
+                        </tab>
+
+                        <tab caption="Trattamenti" id="tab_5" spacing="true" icon="font-icon:BUG" margin="true" >
+                            <vbox width="100%" margin="true" spacing="true">
+                                <entityComboBox id="campagnaTrattamentiBox" caption="Campagna Trattamenti" optionsContainer="campagnaTrattamentisDc" align="MIDDLE_CENTER"/>
+                                <hbox spacing="true" width="100%">
+                                    <groupBox id="trattamentoBox" caption="Trattamenti" spacing="true" width="100%">
+                                        <groupTable id="documentoFitosanitariosTable" height="100%" width="100%"
+                                                    dataContainer="documentoFitosanitariosDc">
+                                            <actions>
+                                                <action id="create" type="create"/>
+                                                <action id="edit" type="edit"/>
+                                                <action id="excelExport" type="excelExport"/>
+                                            </actions>
+                                            <buttonsPanel alwaysVisible="true">
+                                                <button action="documentoFitosanitariosTable.create"/>
+                                                <button action="documentoFitosanitariosTable.edit"/>
+                                                <button id="documentoFitosanitariosTableExcelExportBtn"
+                                                        action="documentoFitosanitariosTable.excelExport"/>
+                                            </buttonsPanel>
+                                            <columns>
+                                                <column id="data"/>
+                                                <column id="note"/>
+                                            </columns>
+                                        </groupTable>
+                                    </groupBox>
+
+                                    <groupBox id="movimentoTrattamentoBox" caption="Prodotti Utilizzati" spacing="true" width="100%">
+                                        <groupTable id="movimentoFitosanitariosTable" height="100%" width="100%"
+                                                    dataContainer="movimentoFitosanitariosDc" multiselect="true">
+                                            <actions>
+                                                <action id="add" type="add"/>
+                                                <action id="edit" type="edit"/>
+                                                <action id="excelExport" type="excelExport"/>
+                                            </actions>
+                                            <buttonsPanel alwaysVisible="true">
+                                                <button id="movimentoFitosanitariosTableAddBtn"
+                                                        action="movimentoFitosanitariosTable.add"/>
+                                                <button id="movimentoFitosanitariosTableEditBtn"
+                                                        action="movimentoFitosanitariosTable.edit"/>
+                                                <button id="movimentoFitosanitariosTableExcelExportBtn"
+                                                        action="movimentoFitosanitariosTable.excelExport"/>
+                                            </buttonsPanel>
+                                            <columns>
+                                                <column id="data" />
+                                                <column id="fitosanitario" />
+                                                <column id="quantita"/>
+                                                <column id="quantitaMin"/>
+                                                <column id="valore"/>
+                                                <column id="note"/>
+                                            </columns>
+                                        </groupTable>
+                                    </groupBox>
+                                </hbox>
+                            </vbox>
                         </tab>
 
                         <tab caption="Listino" id="tab_3" spacing="true" icon="font-icon:LIST">

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.naming.spi.DirObjectFactory;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -43,6 +44,8 @@ public class PianificazioneTrattamentoEdit extends StandardEditor<Pianificazione
     private Notifications notifications;
     @Autowired
     private Dialogs dialogs;
+    @Autowired
+    private ProgressBar progressBar;
 
     @Subscribe
     public void onAfterShow(AfterShowEvent event) {
@@ -74,6 +77,8 @@ public class PianificazioneTrattamentoEdit extends StandardEditor<Pianificazione
 
     @Subscribe("generaTrattamentoBtn")
     public void onGeneraTrattamentoBtnClick(Button.ClickEvent event) {
+        progressBar.setIndeterminate(true);
+        progressBar.setVisible(true);
         dialogs.createOptionDialog()
                 .withCaption("Generazione Trattamento")
                 .withMessage("Sei sicuro di voler generare il trattamento? Questo verrà sccaricato in ogni singolo cliente")
@@ -84,21 +89,47 @@ public class PianificazioneTrattamentoEdit extends StandardEditor<Pianificazione
                                                     .query("select e from CausaliMovimentazioni e where e.causale='Trattamento'")
                                                             .one();
                                     getEditedEntity().getProdottiPianificati().forEach(prodottoPianificato -> {
-                                        Collection<DocumentoFitosanitario> dfList = Collections.emptyList();
+                                        List<DocumentoFitosanitario> dfList = new ArrayList<>();
                                         AtomicReference<Boolean> find = new AtomicReference<>(false);
                                         prodottoPianificato.getAppezzamenti().forEach(appezzamento -> {
                                             find.set(false);
+                                            // Calcolo delle quantità e del valore:
+                                            Double qta = prodottoPianificato.getQuantita()*appezzamento.getSuperficie()/(prodottoPianificato.getTotEttari()*10000.0);
+                                            Double qtaMin = prodottoPianificato.getQuantitaMin()*appezzamento.getSuperficie()/(prodottoPianificato.getQuantitaMin()*10000.0);
+                                            Double costo = qta * prodottoPianificato.getFitosanitario().getPrezzo();
                                             dfList.forEach(documentoFitosanitario -> {
-                                                if(documentoFitosanitario.getCliente().equals(appezzamento.getCliente())){
+                                                if(documentoFitosanitario.getCliente() == appezzamento.getCliente()){
                                                     find.set(true);
+                                                    // Creazione del movimento
+                                                    MovimentoFitosanitario mf = dataManager.create(MovimentoFitosanitario.class);
+                                                    mf.setData(documentoFitosanitario.getData());
+                                                    mf.setFitosanitario(prodottoPianificato.getFitosanitario());
+                                                    mf.setNote(prodottoPianificato.getNote());
+                                                    mf.setAppezzamento(appezzamento);
+                                                    mf.setTenant(getEditedEntity().getTenant());
+                                                    mf.setCausale(cm);
+                                                    mf.setQuantita(qta);
+                                                    mf.setQuantitaMin(qtaMin);
+                                                    mf.setValore(costo);
+                                                    mf.setRiferimentoProdottoPianificato(prodottoPianificato);
+
+                                                    //Aggiunta del movimento
+                                                    mf.setDocumentoFitosanitario(documentoFitosanitario);
+                                                    dataManager.save(mf);
                                                 }
                                             });
                                             if(!find.get()){
+                                                // Creazione del Documento
                                                 DocumentoFitosanitario df = dataManager.create(DocumentoFitosanitario.class);
+                                                df.setNote(prodottoPianificato.getPianificazioneTrattamento().getNote());
                                                 df.setCliente(appezzamento.getCliente());
                                                 df.setTipoDocumento(TipoDocumentoFitosanitario.TRATTAMENTO);
                                                 df.setData(prodottoPianificato.getPianificazioneTrattamento().getData());
                                                 df.setTenant(getEditedEntity().getTenant());
+                                                dataManager.save(df);
+                                                dfList.add(df);
+
+
                                                 // Creazione del movimento
                                                 MovimentoFitosanitario mf = dataManager.create(MovimentoFitosanitario.class);
                                                 mf.setData(df.getData());
@@ -107,11 +138,21 @@ public class PianificazioneTrattamentoEdit extends StandardEditor<Pianificazione
                                                 mf.setAppezzamento(appezzamento);
                                                 mf.setTenant(getEditedEntity().getTenant());
                                                 mf.setCausale(cm);
+                                                mf.setQuantita(qta);
+                                                mf.setQuantitaMin(qtaMin);
+                                                mf.setValore(costo);
+                                                mf.setRiferimentoProdottoPianificato(prodottoPianificato);
 
+                                                //Aggiunta del movimento
+                                                mf.setDocumentoFitosanitario(df);
+                                                dataManager.save(mf);
 
                                             }
                                        });
                                     });
+                                    getEditedEntity().setIsScaricato(true);
+                                    progressBar.setIndeterminate(false);
+                                    progressBar.setVisible(false);
                                 }),
                         new DialogAction(DialogAction.Type.NO)
                 )

@@ -41,7 +41,7 @@
         <scrollBox id="scrollBox" spacing="true">
             <form id="form" dataContainer="documentoFitosanitarioDc" width="100%">
                 <column width="100%">
-                    <label id="titoloPaginaLbl" width="100%" stylename="h2" colspan="3" />
+                    <label id="titoloPaginaLbl" width="100%" stylename="h2" colspan="3"/>
                     <label colspan="3"></label>
                     <comboBox id="tipoDocumentoField" property="tipoDocumento" width="100%" colspan="3"/>
                     <dateField id="dataField" property="data" width="100%"/>
@@ -59,7 +59,8 @@
                     <textField id="tenantField" property="tenant"/>
                 </column>
                 <column width="100%">
-                    <entityComboBox id="fornitoreField" property="fornitore" optionsContainer="fornitoresDc" width="100%">
+                    <entityComboBox id="fornitoreField" property="fornitore" optionsContainer="fornitoresDc"
+                                    width="100%">
                         <actions>
                             <action id="entityLookup" type="entity_lookup">
                                 <properties>
@@ -69,10 +70,10 @@
                             <action id="entityClear" type="entity_clear"/>
                         </actions>
                     </entityComboBox>
-
                 </column>
                 <column width="100%">
-                    <textField id="riferimentoDocumentoEsternoField" property="riferimentoDocumentoEsterno" caption="Rif. DDT Fornitore" width="100%"/>
+                    <textField id="riferimentoDocumentoEsternoField" property="riferimentoDocumentoEsterno"
+                               caption="Rif. DDT Fornitore" width="100%"/>
                 </column>
             </form>
             <groupBox id="movimentiBox" caption="Righe Documento">

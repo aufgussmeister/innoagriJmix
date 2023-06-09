@@ -68,7 +68,7 @@ public class ProdottoPianificato {
     private Double quantita;
 
     @Column(name = "TOT_ETTARI")
-    private String totEttari;
+    private Double totEttari;
 
     @Column(name = "QUANTITA_MIN")
     private Double quantitaMin;
@@ -107,6 +107,25 @@ public class ProdottoPianificato {
     @Column(name = "TIPOLOGIA_APPEZZAMENTO")
     private String tipologiaAppezzamento;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "riferimentoProdottoPianificato")
+    private MovimentoFitosanitario movimentoFitosanitario;
+
+    public MovimentoFitosanitario getMovimentoFitosanitario() {
+        return movimentoFitosanitario;
+    }
+
+    public void setMovimentoFitosanitario(MovimentoFitosanitario movimentoFitosanitario) {
+        this.movimentoFitosanitario = movimentoFitosanitario;
+    }
+
+    public void setTotEttari(Double totEttari) {
+        this.totEttari = totEttari;
+    }
+
+    public Double getTotEttari() {
+        return totEttari;
+    }
+
     public TipologiaAppezzamento getTipologiaAppezzamento() {
         return tipologiaAppezzamento == null ? null : TipologiaAppezzamento.fromId(tipologiaAppezzamento);
     }
@@ -136,14 +155,6 @@ public class ProdottoPianificato {
 
     public void setQuantitaMin(Double quantitaMin) {
         this.quantitaMin = quantitaMin;
-    }
-
-    public String getTotEttari() {
-        return totEttari;
-    }
-
-    public void setTotEttari(String totEttari) {
-        this.totEttari = totEttari;
     }
 
     public Double getQuantita() {

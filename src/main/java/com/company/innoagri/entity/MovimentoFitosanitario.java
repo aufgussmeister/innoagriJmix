@@ -20,7 +20,8 @@ import java.util.Date;
         @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_CAUSALE", columnList = "CAUSALE_ID"),
         @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_FITOSANITARIO", columnList = "FITOSANITARIO_ID"),
         @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_DOCUMENTO_FITOSANITARIO", columnList = "DOCUMENTO_FITOSANITARIO_ID"),
-        @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_APPEZZAMENTO", columnList = "APPEZZAMENTO_ID")
+        @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_APPEZZAMENTO", columnList = "APPEZZAMENTO_ID"),
+        @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_RIFERIMENTO_PRODOTTO_PIANIFICATO", columnList = "RIFERIMENTO_PRODOTTO_PIANIFICATO_ID")
 })
 
 
@@ -30,6 +31,10 @@ public class MovimentoFitosanitario {
     @Id
     @JmixGeneratedValue
     private Long id;
+
+    @JoinColumn(name = "RIFERIMENTO_PRODOTTO_PIANIFICATO_ID")
+    @OneToOne(fetch = FetchType.LAZY)
+    private ProdottoPianificato riferimentoProdottoPianificato;
 
     @JoinColumn(name = "APPEZZAMENTO_ID")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -88,6 +93,14 @@ public class MovimentoFitosanitario {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+
+    public ProdottoPianificato getRiferimentoProdottoPianificato() {
+        return riferimentoProdottoPianificato;
+    }
+
+    public void setRiferimentoProdottoPianificato(ProdottoPianificato riferimentoProdottoPianificato) {
+        this.riferimentoProdottoPianificato = riferimentoProdottoPianificato;
+    }
 
     public Appezzamento getAppezzamento() {
         return appezzamento;

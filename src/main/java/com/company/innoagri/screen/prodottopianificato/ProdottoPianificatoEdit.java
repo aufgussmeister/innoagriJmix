@@ -53,7 +53,7 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
     @Autowired
     private TextField<Double> quantitaMinField;
     @Autowired
-    private TextField<String> totEttariField;
+    private TextField<Double> totEttariField;
     @Autowired
     private TwinColumn<Varieta> varietaField;
     @Autowired
@@ -116,8 +116,9 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
             }
 
             appezzamentoesDc.setItems(aps);
-            log.info("Appezzamenti " + getEditedEntity().getAppezzamenti());
-            appezzamentiField.setValue(getEditedEntity().getAppezzamenti());
+            if(Objects.nonNull(getEditedEntity().getAppezzamenti()))
+            //log.info("Appezzamenti " + getEditedEntity().getAppezzamenti());
+                appezzamentiField.setValue(getEditedEntity().getAppezzamenti());
         }
 
     }
@@ -132,12 +133,12 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
 
         getEditedEntity().setAppezzamenti(aps);
 
-        getEditedEntity().setTotEttari(String.valueOf(superficie.get()/10000.0));
+        getEditedEntity().setTotEttari(superficie.get()/10000.0);
 
-        if(Objects.nonNull(doseEttaroField.getValue()))
-        quantitaField.setValue(doseEttaroField.getValue()* Double.parseDouble(totEttariField.getValue()));
+        if(Objects.nonNull(doseEttaroField.getValue()) )
+            quantitaField.setValue(doseEttaroField.getValue()* getEditedEntity().getTotEttari());
         if(Objects.nonNull(doseEttaroMinField.getValue()))
-        quantitaMinField.setValue(doseEttaroMinField.getValue()* Double.parseDouble(totEttariField.getValue()));
+            quantitaMinField.setValue(doseEttaroMinField.getValue()* getEditedEntity().getTotEttari());
     }
 
     @Subscribe("tipologiaAppezzamentoField")
@@ -163,7 +164,7 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
     @Subscribe("doseEttaroField")
     public void onDoseEttaroFieldValueChange(HasValue.ValueChangeEvent<Double> event) {
         if(Objects.nonNull(totEttariField.getValue()))
-            quantitaField.setValue(event.getValue()* Double.parseDouble(totEttariField.getValue()));
+            quantitaField.setValue(event.getValue()* totEttariField.getValue());
         else
             quantitaField.setValue(0.0);
     }
@@ -171,7 +172,7 @@ public class ProdottoPianificatoEdit extends StandardEditor<ProdottoPianificato>
     @Subscribe("doseEttaroMinField")
     public void onDoseEttaroMinFieldValueChange(HasValue.ValueChangeEvent<Double> event) {
         if(Objects.nonNull(totEttariField.getValue()))
-            quantitaMinField.setValue(event.getValue()* Double.parseDouble(totEttariField.getValue()));
+            quantitaMinField.setValue(event.getValue()* totEttariField.getValue());
         else
             quantitaMinField.setValue(0.0);
     }

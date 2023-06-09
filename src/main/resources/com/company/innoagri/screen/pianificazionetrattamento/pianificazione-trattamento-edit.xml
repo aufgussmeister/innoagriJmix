@@ -41,7 +41,7 @@
                     <dateField id="dataField" property="data" width="100%" colspan="1"/>
                     <textArea id="noteField" property="note" rows="5" colspan="3" width="100%"/>
                     <textField id="tenantField" property="tenant" visible="false" />
-
+                    <progressBar id="progressBar" width="100%"  colspan="3" visible="false"/>
                 </column>
                 <column>
                     <entityPicker id="campagnaTrattamentoField" property="campagnaTrattamento" width="100%" colspan="1" editable="false"/>
@@ -81,5 +81,6 @@
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>
+
     </layout>
 </window>

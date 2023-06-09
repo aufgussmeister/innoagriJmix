@@ -6,7 +6,7 @@
         <instance id="prodottoPianificatoDc"
                   class="com.company.innoagri.entity.ProdottoPianificato">
             <fetchPlan extends="_base">
-                <property name="fitosanitario" fetchPlan="_base">
+                <property name="fitosanitario" fetchPlan="_local">
                     <property name="fitosanitarioNazionale" fetchPlan="_base"/>
                 </property>
                 <property name="avversita" fetchPlan="_base"/>
@@ -43,7 +43,6 @@
                 </query>
             </loader>
         </collection>
-
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -74,19 +73,22 @@
                     <textField id="doseEttaroMinField" property="doseEttaroMin"/>
                     <textArea id="noteField" property="note" rows="5"/>
                     <textField id="quantitaField" property="quantita"/>
-                    <textField id="totEttariField" property="totEttari"/>
                     <textField id="quantitaMinField" property="quantitaMin"/>
                     <textField id="tenantField" property="tenant"/>
                     <comboBox id="tipologiaAppezzamentoField" property="tipologiaAppezzamento"/>
+                    <textField id="totEttariField" property="totEttari"/>
+                    <textField id="prezzoField" property="fitosanitario.prezzo" />
                 </column>
             </form>
             <hbox width="100%">
-                <twinColumn leftColumnCaption="Avversità" rightColumnCaption="Avversità Selezionate" id="avversitaField" addAllBtnEnabled="true" optionsContainer="avversitasDc" width="100%"/>
-                <twinColumn leftColumnCaption="Varietà" rightColumnCaption="Varietà selezionate" id="varietaField" addAllBtnEnabled="true" optionsContainer="varietasDc" width="100%"/>
+                <twinColumn leftColumnCaption="Avversità" rightColumnCaption="Avversità Selezionate" id="avversitaField"
+                            addAllBtnEnabled="true" optionsContainer="avversitasDc" width="100%"/>
+                <twinColumn leftColumnCaption="Varietà" rightColumnCaption="Varietà selezionate" id="varietaField"
+                            addAllBtnEnabled="true" optionsContainer="varietasDc" width="100%"/>
             </hbox>
-
-            <twinColumn leftColumnCaption="Appezzamenti Disponibili" rightColumnCaption="Appezzamenti da Trattare" id="appezzamentiField" addAllBtnEnabled="true" optionsContainer="appezzamentoesDc" width="100%"/>
-
+            <twinColumn leftColumnCaption="Appezzamenti Disponibili" rightColumnCaption="Appezzamenti da Trattare"
+                        id="appezzamentiField" addAllBtnEnabled="true" optionsContainer="appezzamentoesDc"
+                        width="100%"/>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

@@ -28,6 +28,9 @@ public class PianificazioneTrattamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "IS_SCARICATO")
+    private Boolean isScaricato;
+
     @InstanceName
     @Column(name = "DATA_", nullable = false)
     @NotNull
@@ -75,6 +78,14 @@ public class PianificazioneTrattamento {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+
+    public Boolean getIsScaricato() {
+        return isScaricato;
+    }
+
+    public void setIsScaricato(Boolean isScaricato) {
+        this.isScaricato = isScaricato;
+    }
 
     public CampagnaTrattamenti getCampagnaTrattamento() {
         return campagnaTrattamento;

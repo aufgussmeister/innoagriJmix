@@ -6,7 +6,8 @@
     <data readOnly="true">
         <collection id="documentoFitosanitariosDc"
                     class="com.company.innoagri.entity.DocumentoFitosanitario">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+            </fetchPlan>
             <loader id="documentoFitosanitariosDl">
                 <query>
                     <![CDATA[select e from DocumentoFitosanitario e]]>
