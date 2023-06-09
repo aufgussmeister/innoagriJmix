@@ -39,11 +39,15 @@
             <form id="form" dataContainer="pianificazioneTrattamentoDc" width="100%">
                 <column >
                     <dateField id="dataField" property="data" width="100%" colspan="1"/>
-                    <textArea id="noteField" property="note" rows="5" colspan="2" width="100%"/>
+                    <textArea id="noteField" property="note" rows="5" colspan="3" width="100%"/>
                     <textField id="tenantField" property="tenant" visible="false" />
+
                 </column>
                 <column>
                     <entityPicker id="campagnaTrattamentoField" property="campagnaTrattamento" width="100%" colspan="1" editable="false"/>
+                </column>
+                <column>
+                    <button id="generaTrattamentoBtn" width="100%" caption="Genera Trattamento" stylename="danger"/>
                 </column>
             </form>
         </groupBox>

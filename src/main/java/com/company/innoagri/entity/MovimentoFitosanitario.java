@@ -19,7 +19,8 @@ import java.util.Date;
 @Table(name = "MOVIMENTO_FITOSANITARIO", indexes = {
         @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_CAUSALE", columnList = "CAUSALE_ID"),
         @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_FITOSANITARIO", columnList = "FITOSANITARIO_ID"),
-        @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_DOCUMENTO_FITOSANITARIO", columnList = "DOCUMENTO_FITOSANITARIO_ID")
+        @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_DOCUMENTO_FITOSANITARIO", columnList = "DOCUMENTO_FITOSANITARIO_ID"),
+        @Index(name = "IDX_MOVIMENTO_FITOSANITARIO_APPEZZAMENTO", columnList = "APPEZZAMENTO_ID")
 })
 
 
@@ -29,6 +30,10 @@ public class MovimentoFitosanitario {
     @Id
     @JmixGeneratedValue
     private Long id;
+
+    @JoinColumn(name = "APPEZZAMENTO_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Appezzamento appezzamento;
 
     @JoinColumn(name = "CAUSALE_ID", nullable = false)
     @NotNull
@@ -83,6 +88,14 @@ public class MovimentoFitosanitario {
     @TenantId
     @Column(name = "TENANT")
     private String tenant;
+
+    public Appezzamento getAppezzamento() {
+        return appezzamento;
+    }
+
+    public void setAppezzamento(Appezzamento appezzamento) {
+        this.appezzamento = appezzamento;
+    }
 
     public String getTenant() {
         return tenant;
