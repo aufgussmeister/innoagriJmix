@@ -30,69 +30,91 @@
                 width="800"/>
     <layout spacing="true" expand="scrollBox">
         <scrollBox id="scrollBox" spacing="true" margin="5px">
-            <form id="form" dataContainer="fitosanitarioDc" width="100%">
-                <column>
-                    <textField id="prodottoField" property="prodotto" required="true" width="100%"/>
-                    <textField id="impresaField" property="impresa" width="100%"/>
-                    <textField id="attivitaField" property="attivita" caption="Attività" width="100%"/>
-                    <textField id="sostanzeAttiveField" property="sostanzeAttive" width="100%"/>
-                    <textField id="doseMinimaField" property="doseMinima" width="100%"/>
-                    <textField id="doseMassimaField" property="doseMassima" width="100%"/>
-                    <comboBox id="unitaMisuaField" property="unitaMisua" caption="UM / Ettaro" width="100%"/>
-                    <textField id="ggCarenzaField" property="ggCarenza"/>
-                    <checkBox id="attivoField" property="attivo" width="100%"/>
-                    <textArea id="noteField" property="note" rows="5" width="100%"/>
-                    <textField id="prezzoField" property="prezzo"/>
-                </column>
-                <column>
-                    <entityPicker id="fitosanitarioNazionaleField" property="fitosanitarioNazionale" width="100%">
-                        <actions>
-                            <action id="entityLookup" type="entity_lookup"/>
-                            <action id="entityClear" type="entity_clear"/>
-                        </actions>
-                    </entityPicker>
-                    <textField id="c1Field" property="fitosanitarioNazionale.impresa" editable="false" width="100%"/>
-                    <textField id="c2Field" property="fitosanitarioNazionale.attivita" caption="Attività"
-                               editable="false" width="100%"/>
-                    <textField id="c7Field" property="fitosanitarioNazionale.sostanzeAttive" editable="false"
-                               width="100%"/>
-                    <textField id="c8Field" property="fitosanitarioNazionale.statoAmministrativo" editable="false"
-                               width="100%"/>
-                    <textField id="c3Field" property="fitosanitarioNazionale.descrizioneFormulazione" editable="false"
-                               width="100%"/>
-                    <textField id="c4Field" property="fitosanitarioNazionale.contenutoPerCentoGrammiDiProdotto"
-                               editable="false" width="100%"/>
-                    <textField id="c6Field" property="fitosanitarioNazionale.indicazioniDiPericolo" editable="false"
-                               width="100%"/>
-                    <textField id="c5Field" property="fitosanitarioNazionale.scadenzaAutorizzazione" editable="false"
-                               width="100%"/>
-                    <buttonsPanel/>
-                </column>
-            </form>
-            <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/Fitosanitario.avversita">
-                <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="200px">
-                    <actions>
-                        <action id="add" type="add">
-                            <properties>
-                                <property name="openMode" value="DIALOG"/>
-                            </properties>
-                        </action>
-                        <action id="exclude" type="exclude"/>
-                    </actions>
-                    <columns>
-                        <column id="nome"/>
-                        <column id="note"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="avversitaTable.add"/>
-                        <button action="avversitaTable.exclude"/>
-                    </buttonsPanel>
-                </table>
+            <groupBox id="anagraficaGroup" width="100%" height="AUTO" spacing="true" collapsable="true" caption="Dettagli Fitosanitario" responsive="true" collapsed="false" icon="font-icon:BUG">
+                    <form id="form" dataContainer="fitosanitarioDc" width="100%">
+                        <column width="100%">
+                            <textField id="prodottoField" property="prodotto" required="true" width="100%"/>
+                            <textField id="impresaField" property="impresa" width="100%"/>
+                            <textField id="attivitaField" property="attivita" caption="Attività" width="100%"/>
+                            <textField id="sostanzeAttiveField" property="sostanzeAttive" width="100%"/>
+                            <textField id="doseMinimaField" property="doseMinima" width="100%"/>
+                            <textField id="doseMassimaField" property="doseMassima" width="100%"/>
+                            <comboBox id="unitaMisuaField" property="unitaMisua" caption="UM / Ettaro" width="100%"/>
+                            <textField id="ggCarenzaField" property="ggCarenza"/>
+                            <checkBox id="attivoField" property="attivo" width="100%"/>
+                            <currencyField id="prezzoField" property="prezzo" currency="€" width="100%"/>
+                            <textArea id="noteField" property="note" rows="5" width="100%" />
+                        </column>
+                        <column width="100%">
+                            <entityPicker id="fitosanitarioNazionaleField" property="fitosanitarioNazionale" width="100%">
+                                <actions>
+                                    <action id="entityLookup" type="entity_lookup"/>
+                                    <action id="entityClear" type="entity_clear"/>
+                                </actions>
+                            </entityPicker>
+                            <textField id="c1Field" property="fitosanitarioNazionale.impresa" editable="false" width="100%"/>
+                            <textField id="c2Field" property="fitosanitarioNazionale.attivita" caption="Attività"
+                                       editable="false" width="100%"/>
+                            <textField id="c7Field" property="fitosanitarioNazionale.sostanzeAttive" editable="false"
+                                       width="100%"/>
+                            <textField id="c8Field" property="fitosanitarioNazionale.statoAmministrativo" editable="false"
+                                       width="100%"/>
+                            <textField id="c3Field" property="fitosanitarioNazionale.descrizioneFormulazione" editable="false"
+                                       width="100%"/>
+                            <textField id="c4Field" property="fitosanitarioNazionale.contenutoPerCentoGrammiDiProdotto"
+                                       editable="false" width="100%"/>
+                            <textField id="c6Field" property="fitosanitarioNazionale.indicazioniDiPericolo" editable="false"
+                                       width="100%"/>
+                            <textField id="c5Field" property="fitosanitarioNazionale.scadenzaAutorizzazione" editable="false"
+                                       width="100%"/>
+                            <textField id="qtaField" caption="Giacenza" datatype="double" editable="false" width="100%"/>
+                            <textField id="qtaMinField" caption="Giacenza Min" datatype="double" editable="false" width="100%"/>
+                        </column>
+                    </form>
             </groupBox>
+
+            <tabSheet height="300px" width="100%">
+                <tab caption="Avversità" id="tab_1" spacing="true" >
+                    <groupBox id="avversitaBox" caption="msg://com.company.innoagri.entity/Fitosanitario.avversita" width="100%" height="100%">
+                        <table id="avversitaTable" dataContainer="avversitaDc" width="100%" height="200px">
+                            <actions>
+                                <action id="add" type="add">
+                                    <properties>
+                                        <property name="openMode" value="DIALOG"/>
+                                    </properties>
+                                </action>
+                                <action id="exclude" type="exclude"/>
+                            </actions>
+                            <columns>
+                                <column id="nome"/>
+                                <column id="note"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button action="avversitaTable.add"/>
+                                <button action="avversitaTable.exclude"/>
+                            </buttonsPanel>
+                        </table>
+                    </groupBox>
+                </tab>
+                <tab caption="Acquisti" id="tab_2" spacing="true">
+
+                </tab>
+                <tab caption="Trattamenti" id="tab_3" spacing="true">
+
+                </tab>
+                <tab caption="Movimentazioni" id="tab_4" spacing="true">
+
+                </tab>
+            </tabSheet>
         </scrollBox>
+
+
+
+
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>
+
     </layout>
 </window>

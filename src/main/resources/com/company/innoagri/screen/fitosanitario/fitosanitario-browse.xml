@@ -48,20 +48,20 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="fitosanitarioNazionale"/>
                 <column id="prodotto"/>
+                <column id="unitaMisua"/>
                 <column id="qta" caption="Qtà" />
                 <column id="qtaMin" caption="Qtà Min"/>
-                <column id="impresa"/>
-                <column id="attivita"/>
+                <column id="prezzo"/>
                 <column id="doseMinima"/>
                 <column id="doseMassima"/>
-                <column id="unitaMisua"/>
                 <column id="note"/>
                 <column id="attivo"/>
                 <column id="sostanzeAttive"/>
                 <column id="ggCarenza"/>
-                <column id="prezzo"/>
+                <column id="impresa"/>
+                <column id="attivita"/>
+
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

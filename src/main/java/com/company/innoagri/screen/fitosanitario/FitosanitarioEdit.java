@@ -1,5 +1,6 @@
 package com.company.innoagri.screen.fitosanitario;
 
+import com.company.innoagri.app.CalcoloGiacenzaFitosanitarioBean;
 import com.company.innoagri.entity.FitosanitarioNazionale;
 import io.jmix.ui.component.CheckBox;
 import io.jmix.ui.component.HasValue;
@@ -23,6 +24,12 @@ public class FitosanitarioEdit extends StandardEditor<Fitosanitario> {
     private CheckBox attivoField;
     @Autowired
     private TextField<String> sostanzeAttiveField;
+    @Autowired
+    private TextField<Double> qtaField;
+    @Autowired
+    private TextField<Double> qtaMinField;
+    @Autowired
+    private CalcoloGiacenzaFitosanitarioBean giacenza;
 
     @Subscribe("fitosanitarioNazionaleField")
     public void onFitosanitarioNazionaleFieldValueChange(HasValue.ValueChangeEvent<FitosanitarioNazionale> event) {
@@ -37,6 +44,12 @@ public class FitosanitarioEdit extends StandardEditor<Fitosanitario> {
     public void onInitEntity(InitEntityEvent<Fitosanitario> event) {
         // viene eseguito solo nel caso di nuova entità
         event.getEntity().setAttivo(true);
+    }
+
+    @Subscribe
+    public void onAfterShow(AfterShowEvent event) {
+        qtaField.setValue(giacenza.giacenzaQta(getEditedEntity()));
+        qtaMinField.setValue(giacenza.giacenzaQtaMin(getEditedEntity()));
     }
 
 }
