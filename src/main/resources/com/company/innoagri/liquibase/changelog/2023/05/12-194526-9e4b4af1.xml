@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="innoagri">
+        <dropColumn columnName="disattivato" tableName="cliente"/>
+    </changeSet>
+    <changeSet id="2" author="innoagri">
+        <dropColumn columnName="gg_carenza" tableName="fitosanitario"/>
+    </changeSet>
+    <changeSet id="3" author="innoagri">
+        <dropColumn columnName="prezzo_cliente" tableName="listino_cliente"/>
+
+        <dropColumn columnName="prezzo_um" tableName="listino_cliente"/>
+    </changeSet>
+    <changeSet id="4" author="innoagri">
+        <dropNotNullConstraint columnDataType="bigint" columnName="LAVORAZIONE_ID" tableName="LISTINO_CLIENTE"/>
+    </changeSet>
+</databaseChangeLog>
